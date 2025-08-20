@@ -1,0 +1,39 @@
+{
+  "welcome": "Bloguma hoş geldiniz",
+  "readMore": "Devamını oku",
+  "about": "Hakkımda",
+  "blog": "Blog",
+  "hobbies": "Hobilerim",
+  "contact": "İletişim",
+  "hero": {
+    "title": "Merhaba, ben",
+    "subtitle": "Web Geliştirici",
+    "description": "Tasarımı ve kodu doğal bir dengeyle birleştiriyorum.",
+    "cta": "Projelerimi Keşfet"
+  },
+  "navigation": {
+    "about": "Hakkımda",
+    "blog": "Blog",
+    "hobbies": "Hobilerim",
+    "contact": "İletişim"
+  },
+  "footer": {
+    "description": "Merhaba, ben Fatih İnan. Yazılım, web geliştirme, kamp, motor, müzik, spor, gitar, fotoğraf falan. 2002 z generation",
+    "pages": "Sayfalar",
+    "contact": "İletişim",
+    "jobTitle": "Web Geliştirici",
+    "location": "İstanbul, Türkiye",
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "loading": "Yükleniyor...",
+  "blog": {
+    "description": "Web geliştirme, tasarım ve kişisel deneyimlerimi paylaştığım yazılar",
+    "loadMore": "Daha Fazla Yazı Yükle"
+  },
+  "error": {
+    "title": "Bir Hata Oluştu",
+    "description": "Üzgünüz, beklenmeyen bir hata oluştu. Lütfen sayfayı yenilemeyi deneyin.",
+    "retry": "Tekrar Dene",
+    "reload": "Sayfayı Yenile"
+  }
+}
