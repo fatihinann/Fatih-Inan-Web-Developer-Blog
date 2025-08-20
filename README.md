@@ -1,36 +1,215 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fatih İnan - Web Developer Blog
 
-## Getting Started
+## 📋 Proje Hakkında
 
-First, run the development server:
+Bu proje, Fatih İnan'ın kişisel web sitesi ve blog platformudur. Modern web teknolojileri kullanılarak geliştirilmiş, ölçeklenebilir ve performanslı bir full-stack web uygulamasıdır.
 
+### 🎯 Özellikler
+
+- 🌐 **Çok Dilli Destek**: Türkçe ve İngilizce içerik desteği
+- 🌙 **Dark/Light Mode**: Kullanıcı tercihine göre tema değiştirme
+- 📱 **Responsive Design**: Tüm cihazlarda mükemmel görünüm
+- ⚡ **SEO Optimizasyonu**: Arama motorları için optimize edilmiş
+- 🎨 **Modern UI/UX**: Tailwind CSS ile şık tasarım
+- 📝 **Blog Sistemi**: Makale yazma ve yayınlama
+- 🏠 **Kişisel Portfolyo**: Projeler ve yetenekler showcase
+- 🎪 **Hobi Sayfası**: Kamp ve motosiklet tutkusu
+- 📬 **İletişim Formu**: Ziyaretçilerle doğrudan iletişim
+
+## 🚀 Teknolojiler
+
+### Frontend
+- **[Next.js 14](https://nextjs.org/)** - React framework
+- **[React 18](https://reactjs.org/)** - UI library
+- **[TypeScript](https://www.typescriptlang.org/)** - Type safety
+- **[Tailwind CSS](https://tailwindcss.com/)** - Styling
+- **[Lucide React](https://lucide.dev/)** - Icons
+
+### Backend & Database
+- **Node.js** - Server runtime
+- **Next.js API Routes** - Backend API
+
+### Tools & Libraries
+- **[React i18next](https://react.i18next.com/)** - Internationalization
+- **[Google Fonts](https://fonts.google.com/)** - Typography (Inter, Playfair Display, JetBrains Mono)
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
+- **Autoprefixer** - CSS vendor prefixing
+
+## 📦 Kurulum
+
+### Gereksinimler
+- Node.js 18.0.0 veya üzeri
+- pnpm (önerilen) veya npm/yarn
+
+### 1. Depoyu Klonlayın
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/fatihinann/Fatih-Inan-Web-Developer-Blog.git
+cd Fatih-Inan-Web-Developer-Blog
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Bağımlılıkları Kurun
+```bash
+# pnpm ile (önerilen)
+pnpm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# veya npm ile
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# veya yarn ile
+yarn install
+```
 
-## Learn More
+### 3. Geliştirme Sunucusunu Başlatın
+```bash
+# pnpm ile
+pnpm dev
 
-To learn more about Next.js, take a look at the following resources:
+# veya npm ile
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# veya yarn ile
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Tarayıcıda Açın
+[http://localhost:3000](http://localhost:3000) adresini ziyaret edin.
 
-## Deploy on Vercel
+## 🛠️ Kullanılabilir Scriptler
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Geliştirme sunucusunu başlat
+pnpm dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Production build oluştur
+pnpm build
+
+# Production sunucusunu başlat
+pnpm start
+
+# Code linting
+pnpm lint
+
+# Tailwind CSS build
+npx tailwindcss build
+```
+
+## 📁 Proje Yapısı
+
+```
+Fatih-Inan-Web-Developer-Blog/
+├── app/                    # Next.js App Router
+│   ├── components/         # Reusable components
+│   ├── css/               # Global styles
+│   ├── i18n/              # Internationalization
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Home page
+│   └── providers.tsx      # Context providers
+├── components/            # UI Components
+│   ├── layout/           # Layout components
+│   ├── ErrorBoundary.tsx # Error handling
+│   └── footer.tsx        # Footer component
+├── contexts/             # React contexts
+│   └── ThemeContext.tsx  # Theme management
+├── lib/                  # Utility libraries
+│   └── i18n.ts          # i18n configuration
+├── public/              # Static assets
+│   ├── images/         # Image files
+│   └── favicon.ico     # Site icon
+├── styles/              # Additional styles
+├── next.config.js       # Next.js configuration
+├── tailwind.config.js   # Tailwind CSS configuration
+├── tsconfig.json        # TypeScript configuration
+└── package.json         # Dependencies and scripts
+```
+
+## 🎨 Tasarım Sistemi
+
+### Renkler
+- **Primary**: Amber (#f59e0b)
+- **Dark Background**: Slate 900 (#0f172a)
+- **Light Background**: White (#ffffff)
+- **Text**: Gray scale
+
+### Tipografi
+- **Heading**: Playfair Display (Serif)
+- **Body**: Inter (Sans-serif)
+- **Code**: JetBrains Mono (Monospace)
+
+## 🌐 Çoklu Dil Desteği
+
+Proje Türkçe ve İngilizce dillerini destekler:
+
+- **Türkçe (tr)**: Varsayılan dil
+- **İngilizce (en)**: Alternatif dil
+
+Dil dosyaları `lib/i18n.ts` içinde yapılandırılmıştır.
+
+## 🔧 Konfigürasyon
+
+### Environment Variables
+Gerekli environment variable'lar:
+
+```env
+# .env.local
+NEXT_PUBLIC_SITE_URL=https://fatihinan.com
+GOOGLE_VERIFICATION_CODE=your-verification-code
+```
+
+### Tailwind CSS
+Özel renkler ve animasyonlar `tailwind.config.js` dosyasında tanımlanmıştır.
+
+## 📱 Sayfa Yapısı
+
+- **Ana Sayfa** (`/`) - Kişisel tanıtım ve öne çıkan içerik
+- **Hakkımda** (`/about`) - Kişisel ve profesyonel bilgiler
+- **Blog** (`/blog`) - Teknik makaleler ve yazılar
+- **Hobiler** (`/hobbies`) - Kamp ve motosiklet içerikleri
+- **İletişim** (`/contact`) - İletişim formu ve bilgiler
+
+## 🚀 Deployment
+
+### Vercel (Önerilen)
+```bash
+# Vercel CLI ile deploy
+npx vercel --prod
+```
+
+### Manuel Build
+```bash
+# Production build
+pnpm build
+
+# Static export (isteğe bağlı)
+pnpm export
+```
+
+## 🤝 Katkıda Bulunma
+
+1. Bu depoyu fork edin
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
+4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
+
+## 📄 Lisans
+
+Bu proje kişisel kullanım için geliştirilmiştir. Tüm hakları saklıdır.
+
+## 👤 İletişim
+
+**Fatih İnan**
+- Website: [fatihinan.com](https://fatihinan.com)
+- GitHub: [@fatihinann](https://github.com/fatihinann)
+- Email: fatihinan3437@gmail.com
+
+## 🙏 Teşekkürler
+
+- [Next.js Team](https://nextjs.org/) - Amazing framework
+- [Vercel](https://vercel.com/) - Deployment platform
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Lucide](https://lucide.dev/) - Beautiful icons
+
+---
+
+⭐ Bu projeyi beğendiyseniz, star vermeyi unutmayın!
