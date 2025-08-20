@@ -147,15 +147,6 @@ Dil dosyaları `lib/i18n.ts` içinde yapılandırılmıştır.
 
 ## 🔧 Konfigürasyon
 
-### Environment Variables
-Gerekli environment variable'lar:
-
-```env
-# .env.local
-NEXT_PUBLIC_SITE_URL=https://fatihinan.com
-GOOGLE_VERIFICATION_CODE=your-verification-code
-```
-
 ### Tailwind CSS
 Özel renkler ve animasyonlar `tailwind.config.js` dosyasında tanımlanmıştır.
 
