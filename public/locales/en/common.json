@@ -28,7 +28,21 @@
   "loading": "Loading...",
   "blog": {
     "description": "Articles about web development, design and my personal experiences",
-    "loadMore": "Load More Posts"
+    "loadMore": "Load More Posts",
+    "filters": {
+      "all": "All",
+      "web": "Web Development",
+      "design": "Design",
+      "personal": "Personal Articles"
+    },
+    "posts": {
+      "readMore": "Read more",
+      "months": {
+        "jan": "January",
+        "feb": "February",
+        "mar": "March"
+      }
+    }
   },
   "error": {
     "title": "An Error Occurred",
