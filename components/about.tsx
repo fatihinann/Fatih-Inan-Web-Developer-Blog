@@ -6,16 +6,18 @@ import { Badge } from '../components/ui/badge';
 import { Avatar, AvatarFallback } from '../components/ui/avatar';
 import profile from '../assets/images/fatih.jpg'
 import Image from "next/image";
+import { useTranslation } from 'react-i18next';
 export function About() {
+  const { t } = useTranslation();
   const technologies = [
-    { name: 'React', category: 'Frontend', icon: '⚛️' },
-    { name: 'TypeScript', category: 'Language', icon: '🔷' },
-    { name: 'Next.js', category: 'Framework', icon: '▲' },
-    { name: 'Tailwind CSS', category: 'Styling', icon: '🎨' },
-    { name: 'Node.js', category: 'Backend', icon: '💚' },
-    { name: 'PostgreSQL', category: 'Database', icon: '🐘' },
-    { name: 'Figma', category: 'Design', icon: '🎯' },
-    { name: 'Git', category: 'Version Control', icon: '📂' },
+    { name: 'React', category: 'about.technologies.react', icon: '⚛️' },
+    { name: 'TypeScript', category: 'about.technologies.ts', icon: '🔷' },
+    { name: 'Next.js', category: 'about.technologies.nextjs', icon: '▲' },
+    { name: 'Tailwind CSS', category: 'about.technologies.tailwind', icon: '🎨' },
+    { name: 'Node.js', category: 'about.technologies.nodejs', icon: '💚' },
+    { name: 'PostgreSQL', category: 'about.technologies.postgresql', icon: '🐘' },
+    { name: 'Figma', category: 'about.technologies.figma', icon: '🎯' },
+    { name: 'Git', category: 'about.technologies.git', icon: '📂' },
   ];
 
   return (
@@ -30,7 +32,7 @@ export function About() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
-              Hakkımda
+              {t('about.title')}
             </h1>
             <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
           </div>
@@ -59,18 +61,12 @@ export function About() {
               <Card className="border-amber-200 shadow-lg">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-serif text-slate-700 mb-4">
-                    Merhaba! Ben Fatih İnan
+                    {t('about.hello')}
                   </h2>
                   <div className="space-y-4 text-slate-600 leading-relaxed">
-                    <p>
-                      Ben Fatih İnan, 23 yaşındayım, 2002 doğumluyum. Çocukluğumdan beri bilgisayarlara meraklıyım; liseden itibaren bilişim ve web tasarımıyla ilgileniyorum. 11. sınıfta ASP.NET, 12. sınıfta PHP öğrendim ve ardından Eskişehir Osmangazi Üniversitesi’nde Bilgisayar Programcılığı eğitimi aldım. Yaklaşık 2 yıl POS uzmanı olarak çalıştım ve bu süreç bana güzel bir deneyim kazandırdı.
-                    </p>
-                    <p>
-                      Teknoloji hayatımın büyük bir parçası, ama sadece bu değil. Motor, gitar, fotoğraf makinesi, kamp ekipmanları gibi tutkularım var. Rock/Metal konserlerine gidiyorum; ama diğer tutkularımı gerçekleştirmek için maddi kaynak gerektiği için iş hayatına geri dönmek artık önceliğim.
-                    </p>
-                    <p>
-                      Daldan dala atlamak yerine, sağlam bir başlangıç yapabilmek için bu blog sitesini oluşturdum. Öğrendiklerimi uygulayarak kendimi geliştirmeye devam ediyorum ve uzun vadede e-ticaret projeleriyle hem deneyim kazanmayı hem de tutkularımı gerçekleştirebileceğim gelirler elde etmeyi hedefliyorum.
-                    </p>
+                    <p>{t('about.description.part1')}</p>
+                    <p>{t('about.description.part2')}</p>
+                    <p>{t('about.description.part3')}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -85,7 +81,7 @@ export function About() {
             className="mb-16"
           >
             <h2 className="text-3xl font-serif text-amber-900 text-center mb-8">
-              Kullandığım Teknolojiler
+             {t('about.usedTechnologies')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {technologies.map((tech, index) => (
@@ -103,7 +99,7 @@ export function About() {
                         {tech.name}
                       </h3>
                       <Badge variant="secondary" className="bg-amber-100 text-amber-700 text-xs">
-                        {tech.category}
+                        {t(tech.category)}
                       </Badge>
                     </CardContent>
                   </Card>

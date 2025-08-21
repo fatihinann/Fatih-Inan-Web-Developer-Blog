@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { ExternalLink, Camera, MapPin, Heart } from 'lucide-react';
+import { ExternalLink, Camera, MapPin, Github, Headphones, Film } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Hobby {
   id: string;
@@ -27,70 +28,72 @@ interface Hobby {
 }
 
 export function Hobbies() {
+  const { t } = useTranslation();
+
   const hobbies: Hobby[] = [
     {
       id: '1',
-      title: 'Kamp Yaşamı',
-      description: 'Doğayla iç içe geçirdiğim zamanlar, yıldızlar altında uyumak ve sabah kuş sesleriyle uyanmak.',
-      category: 'Doğa',
+      title: 'hobbies.camping.title',
+      description: 'hobbies.camping.description',
+      category: 'hobbies.categories.nature',
       image: '/assets/images/default.svg',
-      location: 'Karadeniz Bölgesi',
+      // location: 'Karadeniz Bölgesi',
     },
     {
       id: '2',
-      title: 'Motosiklet',
-      description: 'Yeni rotalar keşfetmek, özgürlük hissi ve yolda geçirilen unutulmaz anlar.',
-      category: 'Macera',
+      title: 'hobbies.motorcycle.title',
+      description: 'hobbies.motorcycle.description',
+      category: 'hobbies.categories.adventure',
       image: '/assets/images/default.svg',
-/*       location: 'Türkiye Geneli',
- */      socialLink: {
-        platform: 'Strava',
-        url: '#',
-        label: 'Rota Kayıtları'
-      }
+      // location: 'Türkiye Geneli',
+      // socialLink: {
+      //   platform: 'Strava',
+      //   url: '#',
+      //   label: 'Rota Kayıtları'
+      // }
     },
     {
       id: '3',
-      title: 'Doğa Fotoğrafçılığı',
-      description: 'Doğanın güzelliklerini fotoğraflayarak ölümsüzleştirmek ve bu anları paylaşmak.',
-      category: 'Sanat',
-      image: '/assets/images/default.svg',
-/*       location: 'Çeşitli Lokasyonlar'
- */    },
-    {
-      id: '4',
-      title: 'Dizi & Film, Müzik',
-      description: 'Sinema tutkusu, farklı türlerden filmler ve bu deneyimleri değerlendirmek.',
-      category: 'Kültür',
+      title: 'hobbies.films&Music.title',
+      description: 'hobbies.films&Music.description',
+      category: 'hobbies.categories.culture',
       image: '/assets/images/default.svg',
       socialLink: {
         platform: 'Letterboxd',
         url: 'https://letterboxd.com/fatihinan7/',
-        label: 'Dizi & Film'
+        label: 'hobbies.films&Music.films'
       },
       socialLink2: {
         platform: 'Spotify',
         url: 'https://open.spotify.com/user/9bzqbbvmwejng66cjprp9fqvb',
-        label: 'Müzik Listem'
+        label: 'hobbies.films&Music.music'
       }
     },
     {
-      id: '5',
-      title: 'Fitness / Calisthenics',
-      description: 'Şehir içi ve doğa bisiklet turları, hem spor hem de keşif için mükemmel.',
-      category: 'Spor',
+      id: '4',
+      title: 'hobbies.sports.title',
+      description: 'hobbies.sports.description',
+      category: 'hobbies.categories.sports',
       image: '/assets/images/default.svg',
-      /*       location: 'İstanbul ve Çevresi',
-       */
+      // location: 'Çeşitli Lokasyonlar'
+    },
+    {
+      id: '5',
+      title: 'hobbies.photography.title',
+      description: 'hobbies.photography.description',
+      category: 'hobbies.categories.photography',
+      image: '/assets/images/default.svg',
+      // location: 'İstanbul ve Çevresi',
+
     },
     {
       id: '6',
-      title: 'Tasarım',
-      description: 'İçimden geldiği gibi şekillenen tasarımlar.',
-      category: 'Tasarım',
+      title: 'hobbies.design.title',
+      description: 'hobbies.design.description',
+      category: 'hobbies.categories.design',
       image: '/assets/images/default.svg',
-/*       location: 'İstanbul'
- */    }
+      // location: 'İstanbul'
+    }
   ];
 
   const [showAll, setShowAll] = useState(false);
@@ -107,11 +110,11 @@ export function Hobbies() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
-            Hobilerim
+            {t('hobbies.title')}
           </h1>
           <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Hayatımı renklendiren aktiviteler ve tutkularım
+            {t('hobbies.description')}
           </p>
         </motion.div>
 
@@ -123,31 +126,47 @@ export function Hobbies() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl font-serif text-slate-700 mb-6">
-            Takip Edebileceğiniz Platformlar
+            {t('hobbies.platforms')}
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://letterboxd.com/fatihinan7/"
+              href="https://github.com/fatihinann"
               target="_blank"
               rel="noopener noreferrer"
-              >
+            >
               <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Letterboxd - Film Listem
+                <Github className="w-4 h-4 mr-2" />
+                Github
               </Button>
             </a>
-            <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              Strava - Aktivitelerim
-            </Button>
             <a
               href="https://www.instagram.com/fatihinann7/"
               target="_blank"
               rel="noopener noreferrer"
-              >
+            >
               <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
                 <Camera className="w-4 h-4 mr-2" />
-                Instagram - Fotoğraflarım
+                Instagram
+              </Button>
+            </a>
+            <a
+              href="https://letterboxd.com/fatihinan7/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
+                <Headphones className="w-4 h-4 mr-2" />
+                Spotify
+              </Button>
+            </a>
+            <a
+              href="https://letterboxd.com/fatihinan7/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
+                <Film className="w-4 h-4 mr-2" />
+                Letterboxd
               </Button>
             </a>
           </div>
@@ -174,12 +193,12 @@ export function Hobbies() {
                       transition={{ duration: 0.3 }}
                     >
                       <div className="text-6xl opacity-60">
-                        {hobby.category === 'Doğa' && '🏕️'}
-                        {hobby.category === 'Macera' && '🏍️'}
-                        {hobby.category === 'Sanat' && '📸'}
-                        {hobby.category === 'Kültür' && '🎬'}
-                        {hobby.category === 'Spor' && '🏋️'}
-                        {hobby.category === 'Tasarım' && '🎨'}
+                        {hobby.category === 'hobbies.categories.nature' && '🏕️'}
+                        {hobby.category === 'hobbies.categories.adventure' && '🏍️'}
+                        {hobby.category === 'hobbies.categories.photography' && '📸'}
+                        {hobby.category === 'hobbies.categories.culture' && '🎬'}
+                        {hobby.category === 'hobbies.categories.sports' && '🏋️'}
+                        {hobby.category === 'hobbies.categories.design' && '🎨'}
                       </div>
                     </motion.div>
 
@@ -193,7 +212,7 @@ export function Hobbies() {
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
                       <Badge className="bg-white/90 text-amber-700 border-0">
-                        {hobby.category}
+                        {t(hobby.category)}
                       </Badge>
                     </div>
 
@@ -201,7 +220,7 @@ export function Hobbies() {
                     {hobby.location && (
                       <div className="absolute bottom-4 left-4 flex items-center text-white bg-black/50 px-2 py-1 rounded text-sm">
                         <MapPin className="w-3 h-3 mr-1" />
-                        {hobby.location}
+                        {t(hobby.location)}
                       </div>
                     )}
                   </div>
@@ -209,11 +228,11 @@ export function Hobbies() {
                   {/* Content */}
                   <div className="p-6">
                     <CardTitle className="text-xl font-serif text-slate-700 mb-3 group-hover:text-amber-800 transition-colors">
-                      {hobby.title}
+                      {t(hobby.title)}
                     </CardTitle>
 
                     <p className="text-slate-600 mb-4 leading-relaxed">
-                      {hobby.description}
+                      {t(hobby.description)}
                     </p>
 
                     {/* Social Links */}
@@ -226,7 +245,7 @@ export function Hobbies() {
                           whileHover={{ x: 5 }}
                           className="flex items-center text-amber-700 font-medium text-sm hover:text-amber-800 transition-colors cursor-pointer"
                         >
-                          {hobby.socialLink.label}
+                          {t('hobbies.films&Music.films')}
                           <ExternalLink className="w-3 h-3 ml-2" />
                         </motion.a>
                       )}
@@ -238,7 +257,7 @@ export function Hobbies() {
                           whileHover={{ x: 5 }}
                           className="flex items-center text-amber-700 font-medium text-sm hover:text-amber-800 transition-colors cursor-pointer"
                         >
-                          {hobby.socialLink2.label}
+                          {t('hobbies.films&Music.music')}
                           <ExternalLink className="w-3 h-3 ml-2" />
                         </motion.a>
                       )}
@@ -256,7 +275,7 @@ export function Hobbies() {
             className="border-amber-300 text-amber-700 hover:bg-amber-50"
             onClick={() => setShowAll(!showAll)}
           >
-            {showAll ? 'Daha Az Göster' : 'Daha Fazla Göster'}
+            {showAll ? t('less') : t('more')}
           </Button>
         </div>
       </div>

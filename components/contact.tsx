@@ -7,8 +7,10 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Mail, Phone, MapPin, Send, Github, Instagram, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,14 +40,14 @@ export function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'E-posta',
+      label: 'contact.message.email',
       value: 'fatihinan3437@gmail.com',
       href: 'mailto:fatihinan3437@gmail.com'
     },
     {
       icon: MapPin,
-      label: 'Konum',
-      value: 'İstanbul, Türkiye',
+      label: 'contact.contactInfo.labelLocation',
+      value: 'contact.contactInfo.location',
       href: '#'
     }
   ];
@@ -82,11 +84,11 @@ export function Contact() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
-            İletişim
+            {t('contact.title')}
           </h1>
           <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Benimle iletişime geçin! Yeni projeler, iş birlikleri veya sadece merhaba demek için...
+            {t('contact.description')}
           </p>
         </motion.div>
 
@@ -101,14 +103,14 @@ export function Contact() {
             <Card className="border-amber-200 shadow-xl">
               <CardHeader>
                 <CardTitle className="text-2xl font-serif text-slate-700">
-                  Mesaj Gönder
+                  {t('contact.message.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                      İsim Soyisim
+                      {t('contact.message.name')}
                     </label>
                     <Input
                       id="name"
@@ -118,13 +120,13 @@ export function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="border-amber-200 focus:border-amber-400 focus:ring-amber-400"
-                      placeholder="Adınız ve soyadınız"
+                      placeholder={t('contact.message.namePlaceHolder')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                      E-posta
+                      {t('contact.message.email')}
                     </label>
                     <Input
                       id="email"
@@ -140,7 +142,7 @@ export function Contact() {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                      Mesaj
+                      {t('contact.message.message')}
                     </label>
                     <Textarea
                       id="message"
@@ -150,7 +152,7 @@ export function Contact() {
                       value={formData.message}
                       onChange={handleInputChange}
                       className="border-amber-200 focus:border-amber-400 focus:ring-amber-400"
-                      placeholder="Mesajınızı buraya yazın..."
+                      placeholder={t('contact.message.messagePlaceholder')}
                     />
                   </div>
 
@@ -168,7 +170,7 @@ export function Contact() {
                     ) : (
                       <Send className="w-5 h-5 mr-2" />
                     )}
-                    {isSubmitting ? 'Gönderiliyor...' : 'Mesajı Gönder'}
+                    {isSubmitting ? t('contact.sending') : t('contact.message.send')}
                   </Button>
                 </form>
               </CardContent>
@@ -177,7 +179,7 @@ export function Contact() {
             <Card className="border-orange-200 bg-gradient-to-br from-amber-50 to-orange-100">
               <CardContent className="p-8 text-center space-y-4">
                 <p className="text-slate-600 italic">
-                  &quot;Doğa ile kod arasında köprü kurmaya devam ediyorum&quot;
+                  {t('contact.contactInfo.cta')}
                 </p>
                 <div className="text-8xl">🌲</div>
               </CardContent>
@@ -197,7 +199,7 @@ export function Contact() {
             <Card className="border-amber-200">
               <CardHeader>
                 <CardTitle className="text-xl font-serif text-slate-700">
-                  İletişim Bilgileri
+                  {t('contact.contactInfo.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -213,12 +215,12 @@ export function Contact() {
                       <info.icon className="w-5 h-5 text-amber-700" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500">{info.label}</p>
+                      <p className="text-sm text-slate-500">{t(info.label)}</p>
                       <a
                         href={info.href}
                         className="font-medium text-slate-700 hover:text-amber-700 transition-colors"
                       >
-                        {info.value}
+                        {t(info.value)}
                       </a>
                     </div>
                   </motion.div>
@@ -230,7 +232,7 @@ export function Contact() {
             <Card className="border-amber-200">
               <CardHeader>
                 <CardTitle className="text-xl font-serif text-slate-700">
-                  Sosyal Medya
+                  {t('contact.contactInfo.socials')}
                 </CardTitle>
               </CardHeader>
               <CardContent>

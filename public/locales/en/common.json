@@ -1,10 +1,6 @@
 {
   "welcome": "Welcome to my blog",
   "readMore": "Read more",
-  "about": "About",
-  "blog": "Blog",
-  "hobbies": "Hobbies",
-  "contact": "Contact",
   "hero": {
     "title": "Hello, I'm",
     "subtitle": "Web Developer",
@@ -26,9 +22,30 @@
     "copyright": "All rights reserved."
   },
   "loading": "Loading...",
+  "about": {
+    "title": "About Me",
+    "hello": "Hello! I'm Fatih İnan",
+    "description": {
+      "part1": "23 years old. I've been interested in computers since childhood; I've been involved in IT and web design since high school. I learned ASP.NET in the 11th grade and PHP in the 12th grade, then studied Computer Programming at Eskişehir Osmangazi University. I worked as a POS specialist for about 2 years, which gave me valuable experience.",
+      "part2": "Technology is a big part of my life, but it's not everything. I have passions like motorcycles, guitars, cameras, and camping gear. I go to rock/metal concerts; however, returning to work is now my priority as I need financial resources to pursue my other passions.",
+      "part3": "Instead of jumping from one thing to another, I created this blog site to make a solid start. I'm continuing to develop myself by applying what I've learned and aiming to gain experience and earn income through e-commerce projects in the long term."
+    },
+    "usedTechnologies": "Technologies Used",
+    "technologies": {
+      "react": "Front-end Development",
+      "ts": "Language",
+      "nextjs": "Library",
+      "tailwind": "Styling",
+      "nodejs": "Back-end Development",
+      "postgresql": "Database",
+      "figma": "Design",
+      "git": "Version Control"
+    }
+  },
+  "more": "Load More",
+  "less": "Less",
   "blog": {
     "description": "Articles about web development, design and my personal experiences",
-    "loadMore": "Load More Posts",
     "filters": {
       "all": "All",
       "web": "Web Development",
@@ -36,14 +53,115 @@
       "personal": "Personal Articles"
     },
     "posts": {
+      "web": {
+        "post1": {
+          "title": "Using TypeScript in Modern Web Applications",
+          "description": "Ways and best practices to develop safer and more sustainable web applications with TypeScript."
+        },
+        "post2": {
+          "title": "State Management with React Hooks",
+          "description": "Usage of hooks for state management and performance optimizations in modern React applications."
+        }
+      },
+      "design": {
+        "post1": {
+          "title": "Minimalist Design Principles",
+          "description": "Minimalist design approaches to create cleaner and more effective user interfaces."
+        },
+        "post2": {
+          "title": "Color Theory and Web Design",
+          "description": "The impact of color selection on user experience in web design and practical applications."
+        }
+      },
+      "personal": {
+        "post1": {
+          "title": "From Camp Life to Coding",
+          "description": "As I discover the effects of the time I spent in nature on my software development process..."
+        },
+        "post2": {
+          "title": "Motorcycle Journeys and Creativity",
+          "description": "How do hours spent on the road and discovering new places nurture the creative thought process?"
+        }
+      },
       "readMore": "Read more",
+      "min": "min",
       "months": {
         "jan": "January",
         "feb": "February",
-        "mar": "March"
+        "mar": "March",
+        "apr": "April",
+        "may": "May",
+        "jun": "June",
+        "jul": "July",
+        "aug": "August",
+        "sep": "September",
+        "oct": "October",
+        "nov": "November",
+        "dec": "December"
       }
     }
   },
+  "hobbies": {
+    "title": "Hobbies",
+    "description": "Activities and passions that make my life livable",
+    "platforms": "Platforms You Can Follow",
+    "categories": {
+      "nature": "nature",
+      "adventure": "adventure",
+      "culture": "culture",
+      "sports": "sports",
+      "photography": "photography",
+      "design": "design"
+    },
+    "camping": {
+      "title": "Camping",
+      "description": "Moments of disconnecting from screens and sometimes people, while enjoying the beauty of nature. Time spent in harmony with the outdoors."
+    },
+    "motorcycle": {
+      "title": "Motorcycle",
+      "description": "Exploring new routes, feeling the sense of freedom, enjoying a curated playlist, and creating unforgettable memories on the road."
+    },
+    "films&Music": {
+      "title": "Movies & Music",
+      "description": "I share the movies, series, and music I discover and enjoy. May the music you love bring inspiration to your soul.",
+      "films": "Movies & Series",
+      "music": "Music"
+    },
+    "sports": {
+      "title": "Fitness & Calisthenics",
+      "description": "I train to protect my mental health, prevent posture issues caused by screen time, and shape myself into who I want to become."
+    },
+    "photography": {
+      "title": "Photography",
+      "description": "Capturing beautiful moments, documenting the wonders of nature and life, and sharing them for others to experience."
+    },
+    "design": {
+      "title": "Design",
+      "description": "I emphasize visual aesthetics in my designs. Drawing inspiration from natural balance, I blend different perspectives to create unique and meaningful solutions."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Contact me! For new projects, collaborations or just to say hello...",
+    "message": {
+      "title": "Send Message",
+      "name": "Name",
+      "namePlaceHolder": "Name and Surname",
+      "email": "Email",
+      "message": "Message",
+      "messagePlaceholder": "Write your message here...",
+      "send": "Send Message",
+      "sending": "Sending..."
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "location": "Istanbul, Turkey",
+      "labelLocation": "Location",
+      "socials": "Social Media",
+      "cta": "I continue to build bridges between nature and code; if you would like to collaborate or share your questions, feel free to contact me."
+    }
+  },
+
   "error": {
     "title": "An Error Occurred",
     "description": "Sorry, an unexpected error occurred. Please try refreshing the page.",

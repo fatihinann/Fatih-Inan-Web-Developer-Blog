@@ -1,5 +1,3 @@
-// Blog page with card grid layout and categories
-
 'use client';
 
 import { useState } from 'react';
@@ -10,83 +8,116 @@ import { Button } from '../components/ui/button';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+interface BlogDate {
+  day: string;
+  month: string;
+  year: string;
+}
 interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
   category: string;
-  date: string;
+  date: BlogDate;
   readTime: string;
   image: string;
 }
 
 export function Blog() {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState('Tümü');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
 
-  const categories = ['Tümü', 'Web Geliştirme', 'Tasarım', 'Kişisel Yazılar'];
+  const categories = [
+    { value: "all", label: t('blog.filters.all') },
+    { value: "web", label: t('blog.filters.web') },
+    { value: "design", label: t('blog.filters.design') },
+    { value: "personal", label: t('blog.filters.personal') }
+  ];
 
-  // Mock blog posts
   const blogPosts: BlogPost[] = [
     {
       id: '1',
-      title: 'Modern Web Uygulamalarında TypeScript Kullanımı',
-      excerpt: 'TypeScript ile daha güvenli ve sürdürülebilir web uygulamaları geliştirmenin yolları ve en iyi pratikler.',
-      category: 'Web Geliştirme',
-      date: '15 Mart 2024',
-      readTime: '8 dk',
+      title: 'blog.posts.web.post1.title',
+      excerpt: 'blog.posts.web.post1.description',
+      category: 'web',
+      date: {
+        day: '15',
+        month: 'blog.posts.months.mar',
+        year: '2024'
+      },
+      readTime: `8`,
       image: '/assets/images/default.svg'
     },
     {
       id: '2',
-      title: 'Minimalist Tasarım Prensipleri',
-      excerpt: 'Daha temiz ve etkili kullanıcı arayüzleri oluşturmak için minimalist tasarım yaklaşımları.',
-      category: 'Tasarım',
-      date: '10 Mart 2024',
-      readTime: '6 dk',
+      title: 'blog.posts.web.post2.title',
+      excerpt: 'blog.posts.web.post2.description',
+      category: 'web',
+      date: {
+        day: '3',
+        month: 'blog.posts.months.jun',
+        year: '2025'
+      },
+      readTime: `5`,
       image: '/assets/images/default.svg'
     },
     {
       id: '3',
-      title: 'Kamp Yaşantısından Kod Yazmaya',
-      excerpt: 'Doğayla iç içe geçirdiğim zamanların yazılım geliştirme sürecime olan etkilerini keşfettikçe...',
-      category: 'Kişisel Yazılar',
-      date: '5 Mart 2024',
-      readTime: '10 dk',
+      title: 'blog.posts.design.post1.title',
+      excerpt: 'blog.posts.design.post1.description',
+      category: 'design',
+      date: {
+        day: '9',
+        month: 'blog.posts.months.nov',
+        year: '2024'
+      },
+      readTime: '10',
       image: '/assets/images/default.svg'
     },
     {
       id: '4',
-      title: 'React Hook\'larıyla State Yönetimi',
-      excerpt: 'Modern React uygulamalarında state yönetimi için hook kullanımı ve performans optimizasyonları.',
-      category: 'Web Geliştirme',
-      date: '28 Şubat 2024',
-      readTime: '12 dk',
+      title: 'blog.posts.design.post2.title',
+      excerpt: 'blog.posts.design.post2.description',
+      category: 'design',
+      date: {
+        day: '26',
+        month: 'blog.posts.months.aug',
+        year: '2025'
+      },
+      readTime: '12',
       image: '/assets/images/default.svg'
     },
     {
       id: '5',
-      title: 'Renk Teorisi ve Web Tasarımı',
-      excerpt: 'Web tasarımında renk seçiminin kullanıcı deneyimi üzerindeki etkisi ve pratik uygulamalar.',
-      category: 'Tasarım',
-      date: '20 Şubat 2024',
-      readTime: '7 dk',
+      title: 'blog.posts.personal.post1.title',
+      excerpt: 'blog.posts.personal.post1.description',
+      category: 'personal',
+      date: {
+        day: '21',
+        month: 'blog.posts.months.aug',
+        year: '2025'
+      },
+      readTime: '4',
       image: '/assets/images/default.svg'
     },
     {
       id: '6',
-      title: 'Motosiklet Yolculukları ve Yaratıcılık',
-      excerpt: 'Yolda geçen saatler ve keşfedilen yeni yerler, yaratıcı düşünce sürecini nasıl besliyor?',
-      category: 'Kişisel Yazılar',
-      date: '15 Şubat 2024',
-      readTime: '9 dk',
+      title: 'blog.posts.personal.post2.title',
+      excerpt: 'blog.posts.personal.post2.description',
+      category: 'personal',
+      date: {
+        day: '8',
+        month: 'blog.posts.months.apr',
+        year: '2025'
+      },
+      readTime: '3',
       image: '/assets/images/default.svg'
     }
   ];
 
-  const filteredPosts = selectedCategory === 'Tümü' 
-    ? blogPosts 
+  const filteredPosts = selectedCategory === 'all'
+    ? blogPosts
     : blogPosts.filter(post => post.category === selectedCategory);
 
   const handleCategoryChange = (category: string) => {
@@ -148,16 +179,15 @@ export function Blog() {
         >
           {categories.map((category) => (
             <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => handleCategoryChange(category)}
-              className={`transition-all duration-200 ${
-                selectedCategory === category
-                  ? 'bg-slate-700 hover:bg-slate-800 text-white'
-                  : 'border-amber-300 text-amber-700 hover:bg-amber-50'
-              }`}
+              key={category.value}
+              variant={selectedCategory === category.value ? "default" : "outline"}
+              onClick={() => handleCategoryChange(category.value)}
+              className={`transition-all duration-200 ${selectedCategory === category.value
+                ? 'bg-slate-700 hover:bg-slate-800 text-white'
+                : 'border-amber-300 text-amber-700 hover:bg-amber-50'
+                }`}
             >
-              {category}
+              {category.label}
             </Button>
           ))}
         </motion.div>
@@ -193,7 +223,7 @@ export function Blog() {
                   whileHover={{ y: -5 }}
                   className="group cursor-pointer"
                 >
-                                     <Card className="border-amber-200 hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
+                  <Card className="border-amber-200 hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                     <CardContent className="p-0">
                       {/* Image */}
                       <div className="relative w-full h-48 bg-gradient-to-br from-amber-100 to-orange-100 overflow-hidden">
@@ -210,32 +240,32 @@ export function Blog() {
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-3">
                           <Badge variant="secondary" className="bg-amber-100 text-amber-700">
-                            {post.category}
+                            {t(`blog.filters.${post.category}`)}
                           </Badge>
                           <div className="flex items-center text-xs text-slate-500">
                             <Clock className="w-3 h-3 mr-1" />
-                            {post.readTime}
+                            {post.readTime} {t('blog.posts.min')}
                           </div>
                         </div>
 
                         <CardTitle className="text-xl font-serif text-slate-700 mb-3 group-hover:text-amber-800 transition-colors">
-                          {post.title}
+                          {t(post.title)}
                         </CardTitle>
 
                         <p className="text-slate-600 mb-4 line-clamp-3">
-                          {post.excerpt}
+                          {t(post.excerpt)}
                         </p>
 
                         <div className="flex items-center justify-between">
                           <div className="flex items-center text-sm text-slate-500">
                             <Calendar className="w-4 h-4 mr-2" />
-                            {post.date}
+                            {post.date.day} {t(post.date.month)} {post.date.year}
                           </div>
                           <motion.div
                             className="flex items-center text-amber-700 font-medium text-sm"
                             whileHover={{ x: 5 }}
                           >
-                            Devamını Oku
+                            {t('readMore')}
                             <ArrowRight className="w-4 h-4 ml-1" />
                           </motion.div>
                         </div>
@@ -261,7 +291,7 @@ export function Blog() {
               size="lg"
               className="border-amber-300 text-amber-700 hover:bg-amber-50"
             >
-              {t('blog.loadMore')}
+              {t('loadMore')}
             </Button>
           </motion.div>
         )}

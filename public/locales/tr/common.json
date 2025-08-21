@@ -1,10 +1,6 @@
 {
   "welcome": "Bloguma hoş geldiniz",
   "readMore": "Devamını oku",
-  "about": "Hakkımda",
-  "blog": "Blog",
-  "hobbies": "Hobilerim",
-  "contact": "İletişim",
   "hero": {
     "title": "Merhaba, ben",
     "subtitle": "Web Geliştirici",
@@ -26,10 +22,148 @@
     "copyright": "Tüm hakları saklıdır."
   },
   "loading": "Yükleniyor...",
+  "about": {
+    "title": "Hakkımda",
+    "hello": "Merhaba! Ben Fatih İnan",
+    "description": {
+      "part1": "23 yaşındayım. Çocukluğumdan beri bilgisayarlara meraklıyım; liseden itibaren bilişim ve web tasarımıyla ilgileniyorum. 11. sınıfta ASP.NET, 12. sınıfta PHP öğrendim ve ardından Eskişehir Osmangazi Üniversitesi’nde Bilgisayar Programcılığı eğitimi aldım. Yaklaşık 2 yıl POS uzmanı olarak çalıştım ve bu süreç bana güzel bir deneyim kazandırdı.",
+      "part2": "Teknoloji hayatımın büyük bir parçası, ama sadece bu değil. Motor, gitar, fotoğraf makinesi, kamp ekipmanları gibi tutkularım var. Rock/Metal konserlerine gidiyorum; ama diğer tutkularımı gerçekleştirmek için maddi kaynak gerektiği için iş hayatına geri dönmek artık önceliğim.",
+      "part3": "Daldan dala atlamak yerine, sağlam bir başlangıç yapabilmek için bu blog sitesini oluşturdum. Öğrendiklerimi uygulayarak kendimi geliştirmeye devam ediyorum ve uzun vadede e-ticaret projeleriyle hem deneyim kazanmayı hem de tutkularımı gerçekleştirebileceğim gelirler elde etmeyi hedefliyorum."
+    },
+    "usedTechnologies": "Kullandığım Teknolojiler",
+    "technologies": {
+      "react": "Ön Uç Geliştirme",
+      "ts": "Dil",
+      "nextjs": "Kütüphane",
+      "tailwind": "Şekillendirme",
+      "nodejs": "Arka Uç Geliştirme",
+      "postgresql": "Veritabanı",
+      "figma": "Tasarım",
+      "git": "Versiyon Kontrol"
+    }
+  },
+  "more": "Daha Fazla",
+  "less": "Daha Az",
   "blog": {
     "description": "Web geliştirme, tasarım ve kişisel deneyimlerimi paylaştığım yazılar",
-    "loadMore": "Daha Fazla Yazı Yükle"
+    "filters": {
+      "all": "Hepsi",
+      "web": "Web Geliştirme",
+      "design": "Tasarım",
+      "personal": "Kişisel Yazılar"
+    },
+    "posts": {
+      "web": {
+        "post1": {
+          "title": "Modern Web Uygulamalarında TypeScript Kullanımı",
+          "description": "TypeScript ile daha güvenli ve sürdürülebilir web uygulamaları geliştirmenin yolları ve en iyi pratikler."
+        },
+        "post2": {
+          "title": "React Hook'larıyla State Yönetimi",
+          "description": "Modern React uygulamalarında state yönetimi için hook kullanımı ve performans optimizasyonları."
+        }
+      },
+      "design": {
+        "post1": {
+          "title": "Minimalist Tasarım Prensipleri",
+          "description": "Daha temiz ve etkili kullanıcı arayüzleri oluşturmak için minimalist tasarım yaklaşımları."
+        },
+        "post2": {
+          "title": "Renk Teorisi ve Web Tasarımı",
+          "description": "Web tasarımında renk seçiminin kullanıcı deneyimi üzerindeki etkisi ve pratik uygulamalar."
+        }
+      },
+      "personal": {
+        "post1": {
+          "title": "Kamp Yaşantısından Kod Yazmaya",
+          "description": "Doğayla iç içe geçirdiğim zamanların yazılım geliştirme sürecime olan etkilerini keşfettikçe..."
+        },
+        "post2": {
+          "title": "Motosiklet Yolculukları ve Yaratıcılık",
+          "description": "Yolda geçen saatler ve keşfedilen yeni yerler, yaratıcı düşünce sürecini nasıl besliyor?"
+        }
+      },
+      "readMore": "Devamını oku",
+      "min": "dk",
+      "months": {
+        "jan": "Ocak",
+        "feb": "Şubat",
+        "mar": "Mart",
+        "apr": "Nisan",
+        "may": "Mayıs",
+        "jun": "Haziran",
+        "jul": "Temmuz",
+        "aug": "Ağustos",
+        "sep": "Eylül",
+        "oct": "Ekim",
+        "nov": "Kasım",
+        "dec": "Aralık"
+      }
+    }
   },
+  "hobbies": {
+    "title": "Hobilerim",
+    "description": "Hayatımı yaşanılabilir kılan aktiviteler ve tutkularım",
+    "platforms": "Takip edebileceğiniz platformlar",
+    "categories": {
+      "nature": "Doğa",
+      "adventure": "Macera",
+      "culture": "Kültür",
+      "sports": "Spor",
+      "photography": "Fotoğrafçılık",
+      "design": "Tasarım"
+    },
+    "camping": {
+      "title": "Kamp",
+      "description": "Ekranlardan ve bazen insanlardan uzaklaşıp doğanın güzelliğinin tadını çıkardığım anlar. Doğayla uyum içinde geçirilen zamanlar."
+    },
+    "motorcycle": {
+      "title": "Motor",
+      "description": "Yeni rotalar keşfetmek, özgürlük duygusunu hissetmek, özenle seçilmiş bir çalma listesinin tadını çıkarmak ve yolda unutulmaz anılar yaratmak."
+    },
+    "films&Music": {
+      "title": "Dizi & Film, Müzik",
+      "description": "Beğendiğim dizi, film ve müzikleri paylaşmayı seviyorum. Belki benim sevdiğim şarkılar sizin için de ruhunuza dokunan bir hediye olur.",
+      "films": "Dizi & Film",
+      "music": "Müzik"
+    },
+    "sports": {
+      "title": "Fitness & Calisthenics",
+      "description": "Spor yapmak bana hem zihinsel olarak iyi geliyor hem de ekran başında bozulabilecek duruşumu toparlıyor. Kendimi görmek istediğim hale yaklaşmamı sağlıyor."
+    },
+    "photography": {
+      "title": "Fotoğrafçılık",
+      "description": "Güzel anları yakalamak, doğanın ve hayatın güzelliklerini belgelemek. Başkalarının da bu anları deneyimlemesini sağlamak."
+    },
+    "design": {
+      "title": "Tasarım",
+      "description": "Tasarımda görsel estetiği ön planda tutuyorum. Doğadan aldığım dengeyle farklı bakış açılarını bir araya getirerek özgün çözümler üretmeyi amaçlıyorum."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Benimle iletişime geçin! Yeni projeler, iş birlikleri veya sadece merhaba demek için...",
+    "message": {
+      "title": "Mesaj Gönder",
+      "name": "İsim Soyisim",
+      "namePlaceHolder": "Ad ve Soyad",
+      "email": "E-posta",
+      "message": "Mesaj",
+      "messagePlaceholder": "Mesajınızı buraya yazın...",
+      "send": "Mesaj Gönder",
+      "sending": "Gönderiliyor..."
+
+    },
+    "contactInfo": {
+      "title": "İletişim Bilgileri",
+      "email": "E-posta",
+      "location": "İstanbul, Türkiye",
+      "labelLocation": "Konum",
+      "socials": "Sosyal Medya",
+      "cta": "Doğa ile kod arasında köprüler kurmaya devam ediyorum; eğer işbirliği yapmak veya sorularınızı paylaşmak isterseniz, benimle iletişime geçmekten çekinmeyin."
+    }
+  },
+
   "error": {
     "title": "Bir Hata Oluştu",
     "description": "Üzgünüz, beklenmeyen bir hata oluştu. Lütfen sayfayı yenilemeyi deneyin.",
