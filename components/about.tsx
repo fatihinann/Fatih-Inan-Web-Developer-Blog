@@ -7,7 +7,6 @@ import { Avatar, AvatarFallback } from '../components/ui/avatar';
 import profile from '../assets/images/fatih.jpg'
 import Image from "next/image";
 import { useTranslation } from 'react-i18next';
-import '../src/app/css/globals.css';
 
 export function About() {
   const { t } = useTranslation();
@@ -23,9 +22,7 @@ export function About() {
   ];
 
   return (
-    <div className="about-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
-      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
-    }}>
+    <div className="min-h-screen bg-gradient-theme">
 
       <div className="container mx-auto px-4 pb-8">
         <motion.div
@@ -36,10 +33,10 @@ export function About() {
         >
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
               {t('about.title')}
             </h1>
-            <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           </div>
 
           {/* Biography Section */}
@@ -51,7 +48,7 @@ export function About() {
               className="md:col-span-1 text-center"
             >
               <Avatar className="w-48 h-48 mx-auto mb-6">
-                <AvatarFallback className="text-4xl bg-amber-100 text-amber-800">
+                <AvatarFallback className="text-4xl bg-muted text-muted-foreground">
                   <Image src={profile} alt="Fatih İnan" width={192} height={192} />
                 </AvatarFallback>
               </Avatar>
@@ -63,12 +60,12 @@ export function About() {
               transition={{ delay: 0.2, duration: 0.4 }}
               className="md:col-span-2"
             >
-              <Card className="border-amber-200 shadow-lg">
+              <Card className="border-border bg-card shadow-lg">
                 <CardContent className="p-8">
                   <h2 className="text-2xl text-muted font-serif mb-4">
                     {t('about.hello')}
                   </h2>
-                  <div className="space-y-4 leading-relaxed">
+                  <div className="space-y-4 leading-relaxed text-muted-foreground">
                     <p>{t('about.description.part1')}</p>
                     <p>{t('about.description.part2')}</p>
                     <p>{t('about.description.part3')}</p>
@@ -85,7 +82,7 @@ export function About() {
             transition={{ delay: 0.3, duration: 0.4 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-serif text-center mb-8">
+            <h2 className="text-3xl font-serif text-center mb-8 text-foreground">
               {t('about.usedTechnologies')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -97,13 +94,13 @@ export function About() {
                   transition={{ delay: 0.4 + index * 0.05, duration: 0.3 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Card className="border-orange-200 hover:shadow-md transition-all duration-200">
+                  <Card className="border-border bg-card hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4 text-center">
                       <div className="text-2xl mb-2">{tech.icon}</div>
                       <h3 className="font-semibold text-foreground mb-1">
                         {tech.name}
                       </h3>
-                      <Badge variant="secondary" className="bg-amber-100 text-amber-700 text-xs">
+                      <Badge variant="secondary" className="bg-secondary text-secondary-foreground text-xs">
                         {t(tech.category)}
                       </Badge>
                     </CardContent>

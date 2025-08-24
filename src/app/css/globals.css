@@ -2,7 +2,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  .text-secondary-foreground {
+    color: var(--secondary-foreground);
+  }
+  .bg-muted {
+    background-color: var(--muted);
+  }
+  .text-muted-foreground {
+    color: var(--muted-foreground);
+  }
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  .text-accent-foreground {
+    color: var(--accent-foreground);
+  }
+  .bg-destructive {
+    background-color: var(--destructive);
+  }
+  .text-destructive-foreground {
+    color: var(--destructive-foreground);
+  }
+  .border-border {
+    border-color: var(--border);
+  }
+  .bg-input {
+    background-color: var(--input);
+  }
+  .ring-ring {
+    --tw-ring-color: var(--ring);
+  }
+  
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -24,9 +57,9 @@
   --input: #e5e5e5;
   --ring: #d2691e;
   --radius: 0.5rem;
-  --bg-gradient-start: #fef7ed;
-  --bg-gradient-middle: #fed7aa;
-  --bg-gradient-end: #fef3c7;
+  --bg-gradient-start: #fffbeb;
+  --bg-gradient-middle: #fff7ed;
+  --bg-gradient-end: #fef9c2;
 }
 
 .dark {
