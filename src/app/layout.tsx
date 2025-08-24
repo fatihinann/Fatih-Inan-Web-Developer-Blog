@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "@/app/css/globals.css";
 import Providers from './providers'
-import { Header } from "../../components/layout/header";
+import { Header } from "../../components/ui/header";
 import { Footer } from "../../components/footer";
-
-
 
 export const metadata: Metadata = {
   title: {
@@ -56,16 +54,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
+    <html lang="tr" suppressHydrationWarning>
       <body>
-        <Providers> 
+        <Providers>
           <Header />
           <main className="min-h-screen">
             {children}
           </main>
           <Footer />
         </Providers>
-        
+
         <style dangerouslySetInnerHTML={{
           __html: `
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');

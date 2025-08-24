@@ -7,6 +7,8 @@ import { Avatar, AvatarFallback } from '../components/ui/avatar';
 import profile from '../assets/images/fatih.jpg'
 import Image from "next/image";
 import { useTranslation } from 'react-i18next';
+import '../src/app/css/globals.css';
+
 export function About() {
   const { t } = useTranslation();
   const technologies = [
@@ -21,7 +23,10 @@ export function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100">
+    <div className="about-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
+      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
+    }}>
+
       <div className="container mx-auto px-4 pb-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -60,10 +65,10 @@ export function About() {
             >
               <Card className="border-amber-200 shadow-lg">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-serif text-slate-700 mb-4">
+                  <h2 className="text-2xl text-muted font-serif mb-4">
                     {t('about.hello')}
                   </h2>
-                  <div className="space-y-4 text-slate-600 leading-relaxed">
+                  <div className="space-y-4 leading-relaxed">
                     <p>{t('about.description.part1')}</p>
                     <p>{t('about.description.part2')}</p>
                     <p>{t('about.description.part3')}</p>
@@ -80,8 +85,8 @@ export function About() {
             transition={{ delay: 0.3, duration: 0.4 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-serif text-amber-900 text-center mb-8">
-             {t('about.usedTechnologies')}
+            <h2 className="text-3xl font-serif text-center mb-8">
+              {t('about.usedTechnologies')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {technologies.map((tech, index) => (
@@ -95,7 +100,7 @@ export function About() {
                   <Card className="border-orange-200 hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4 text-center">
                       <div className="text-2xl mb-2">{tech.icon}</div>
-                      <h3 className="font-semibold text-slate-700 mb-1">
+                      <h3 className="font-semibold text-foreground mb-1">
                         {tech.name}
                       </h3>
                       <Badge variant="secondary" className="bg-amber-100 text-amber-700 text-xs">

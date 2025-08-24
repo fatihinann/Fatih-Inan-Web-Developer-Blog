@@ -13,9 +13,11 @@ export function Hero() {
   const { displayText } = useTypewriter(fullText, 50);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="hero-theme relative min-h-screen flex items-center justify-center overflow-hidden" style={{
+      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
+    }}>
       {/* Background with wood texture effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100">
+      <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 40c0-11 9-20 20-20s20 9 20 20v20c0 11-9 20-20 20s-20-9-20-20zm40 0c0-11 9-20 20-20s20 9 20 20v20c0 11-9 20-20 20s-20-9-20-20z' fill='%23d2691e' fill-opacity='0.1'/%3E%3C/svg%3E")`
         }}></div>
@@ -33,7 +35,7 @@ export function Hero() {
             {t('hero.title')}{' '}
             <span className="text-orange-700">Fatih</span>
             <br />
-            <span className="text-slate-700">{t('hero.subtitle')}</span>
+            <span className="text-ring">{t('hero.subtitle')}</span>
           </h1>
 
           {/* Typewriter Subtitle */}

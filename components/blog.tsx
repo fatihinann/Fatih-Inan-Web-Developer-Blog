@@ -146,7 +146,9 @@ export function Blog() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100">
+    <div className="blog-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
+      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
+    }}>
       <div className="container mx-auto px-4 pt-20 pb-8">
         {/* Header */}
         <motion.div

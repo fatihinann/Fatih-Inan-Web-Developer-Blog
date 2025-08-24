@@ -1,10 +1,8 @@
-// Modern header with wood aesthetic and scroll shadow animation
-
 'use client';
 
 import { motion } from 'framer-motion';
 import { Github, Instagram, Film } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Button } from './button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useScroll } from '../../src/hooks/useScroll';
@@ -33,9 +31,14 @@ export function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
-        isScrolled ? 'shadow-lg bg-white/95 backdrop-blur-sm' : 'bg-transparent'
+      className={`header-theme fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
+        isScrolled ? 'shadow-lg backdrop-blur-sm' : ''
       }`}
+      style={{
+        backgroundColor: isScrolled ? 'var(--background)' : 'transparent',
+        opacity: isScrolled ? 0.95 : 1,
+        borderBottom: isScrolled ? '1px solid var(--border)' : 'none'
+      }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}

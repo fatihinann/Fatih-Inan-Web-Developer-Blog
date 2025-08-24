@@ -28,10 +28,10 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     console.log('Form submitted:', formData);
     setIsSubmitting(false);
     setFormData({ name: '', email: '', message: '' });
@@ -74,7 +74,10 @@ export function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100">
+
+    <div className="contact-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
+      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
+    }}>
       <div className="container mx-auto px-4 pt-20 pb-8">
         {/* Header */}
         <motion.div
@@ -193,7 +196,7 @@ export function Contact() {
             transition={{ delay: 0.3, duration: 0.4 }}
             className="space-y-8"
           >
-            
+
 
             {/* Contact Information */}
             <Card className="border-amber-200">

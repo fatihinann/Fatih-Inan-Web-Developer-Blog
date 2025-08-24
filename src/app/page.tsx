@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Hero } from '../../components/hero';
 import Script from 'next/script';
+import Providers from './providers';
 
 export default function HomePage() {
   const jsonLd = {
@@ -40,7 +41,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+
       <main>
         <AnimatePresence mode="wait">
           <motion.div
@@ -49,12 +50,14 @@ export default function HomePage() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
           >
-            <Hero />
+            <Providers>
+              <Hero />
+            </Providers>
           </motion.div>
         </AnimatePresence>
       </main>
 
-      
+
     </div>
   );
 }
