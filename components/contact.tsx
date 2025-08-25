@@ -75,9 +75,7 @@ export function Contact() {
 
   return (
 
-    <div className="contact-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
-      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
-    }}>
+    <div className="min-h-screen bg-gradient-theme">
       <div className="container mx-auto px-4 pt-20 pb-8">
         {/* Header */}
         <motion.div
@@ -86,11 +84,11 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
+          <h1 className="text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
             {t('contact.title')}
           </h1>
-          <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('contact.description')}
           </p>
         </motion.div>
@@ -103,16 +101,16 @@ export function Contact() {
             transition={{ delay: 0.2, duration: 0.4 }}
             className='space-y-8'
           >
-            <Card className="border-amber-200 shadow-xl">
+            <Card className="border-border shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl font-serif text-slate-700">
+                <CardTitle className="text-2xl font-serif text-foreground">
                   {t('contact.message.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                       {t('contact.message.name')}
                     </label>
                     <Input
@@ -122,13 +120,13 @@ export function Contact() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                      className="border-border focus:border-primary focus:ring-primary"
                       placeholder={t('contact.message.namePlaceHolder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                       {t('contact.message.email')}
                     </label>
                     <Input
@@ -138,13 +136,13 @@ export function Contact() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                      className="border-border focus:border-primary focus:ring-primary"
                       placeholder="email@example.com"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                       {t('contact.message.message')}
                     </label>
                     <Textarea
@@ -154,7 +152,7 @@ export function Contact() {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                      className="border-border focus:border-primary focus:ring-primary"
                       placeholder={t('contact.message.messagePlaceholder')}
                     />
                   </div>
@@ -162,7 +160,7 @@ export function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-slate-700 hover:bg-slate-800 text-white py-3 transition-all duration-300"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <motion.div
@@ -179,9 +177,9 @@ export function Contact() {
               </CardContent>
             </Card>
             {/* Nature Illustration */}
-            <Card className="border-orange-200 bg-gradient-to-br from-amber-50 to-orange-100">
+            <Card className="border-border bg-gradient-to-br from-secondary to-accent">
               <CardContent className="p-8 text-center space-y-4">
-                <p className="text-slate-600 italic">
+                <p className="text-muted-foreground italic">
                   {t('contact.contactInfo.cta')}
                 </p>
                 <div className="text-8xl">🌲</div>
@@ -199,9 +197,9 @@ export function Contact() {
 
 
             {/* Contact Information */}
-            <Card className="border-amber-200">
+            <Card className="border-border">
               <CardHeader>
-                <CardTitle className="text-xl font-serif text-slate-700">
+                <CardTitle className="text-xl font-serif text-foreground">
                   {t('contact.contactInfo.title')}
                 </CardTitle>
               </CardHeader>
@@ -212,16 +210,16 @@ export function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + index * 0.05, duration: 0.3 }}
-                    className="flex items-center space-x-4 p-3 rounded-lg hover:bg-amber-50 transition-colors"
+                    className="flex items-center space-x-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors"
                   >
-                    <div className="bg-amber-100 p-2 rounded-full">
-                      <info.icon className="w-5 h-5 text-amber-700" />
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <info.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500">{t(info.label)}</p>
+                      <p className="text-sm text-muted-foreground">{t(info.label)}</p>
                       <a
                         href={info.href}
-                        className="font-medium text-slate-700 hover:text-amber-700 transition-colors"
+                        className="font-medium text-foreground hover:text-primary transition-colors"
                       >
                         {t(info.value)}
                       </a>
@@ -232,9 +230,9 @@ export function Contact() {
             </Card>
 
             {/* Social Media Links */}
-            <Card className="border-amber-200">
+            <Card className="border-border">
               <CardHeader>
-                <CardTitle className="text-xl font-serif text-slate-700">
+                <CardTitle className="text-xl font-serif text-foreground">
                   {t('contact.contactInfo.socials')}
                 </CardTitle>
               </CardHeader>
@@ -250,16 +248,16 @@ export function Contact() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5 + index * 0.05, duration: 0.3 }}
                       whileHover={{ x: 5 }}
-                      className="flex items-center space-x-4 p-3 rounded-lg hover:bg-amber-50 transition-all duration-200 group"
+                      className="flex items-center space-x-4 p-3 rounded-lg hover:bg-secondary/50 transition-all duration-200 group"
                     >
-                      <div className="bg-amber-100 group-hover:bg-amber-200 p-2 rounded-full transition-colors">
-                        <social.icon className="w-5 h-5 text-amber-700" />
+                      <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full transition-colors">
+                        <social.icon className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-medium text-slate-700 group-hover:text-amber-700 transition-colors">
+                        <p className="font-medium text-foreground group-hover:text-primary transition-colors">
                           {social.platform}
                         </p>
-                        <p className="text-sm text-slate-500">{social.username}</p>
+                        <p className="text-sm text-muted-foreground">{social.username}</p>
                       </div>
                     </motion.a>
                   ))}

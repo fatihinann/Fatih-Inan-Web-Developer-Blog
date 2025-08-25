@@ -62,7 +62,7 @@ export function About() {
             >
               <Card className="border-border bg-card shadow-lg">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl text-muted font-serif mb-4">
+                  <h2 className="text-2xl text-foreground font-serif mb-4">
                     {t('about.hello')}
                   </h2>
                   <div className="space-y-4 leading-relaxed text-muted-foreground">
@@ -94,13 +94,13 @@ export function About() {
                   transition={{ delay: 0.4 + index * 0.05, duration: 0.3 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Card className="border-border bg-card hover:shadow-md transition-all duration-200">
+                  <Card className="border-border bg-card hover:shadow-md transition-all duration-200 hover:border-primary">
                     <CardContent className="p-4 text-center">
                       <div className="text-2xl mb-2">{tech.icon}</div>
                       <h3 className="font-semibold text-foreground mb-1">
                         {tech.name}
                       </h3>
-                      <Badge variant="secondary" className="bg-secondary text-secondary-foreground text-xs">
+                      <Badge variant="secondary" className="bg-primary/10 text-primary text-xs border-primary/20">
                         {t(tech.category)}
                       </Badge>
                     </CardContent>

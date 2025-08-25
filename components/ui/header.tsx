@@ -48,7 +48,7 @@ export function Header() {
           {/* Logo/Signature */}
           <Link href="/">
             <motion.div
-              className="text-2xl font-serif text-amber-800 cursor-pointer"
+              className="text-2xl font-serif text-primary cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
               Fatih İnan
@@ -62,8 +62,8 @@ export function Header() {
                 <motion.div
                   className={`text-sm font-medium transition-colors cursor-pointer ${
                     pathname === item.href
-                      ? 'text-slate-700 border-b-2 border-slate-700'
-                      : 'text-amber-700 hover:text-slate-700'
+                      ? 'text-foreground border-b-2 border-primary'
+                      : 'text-primary hover:text-foreground'
                   }`}
                   whileHover={{ y: -2 }}
                 >
@@ -89,7 +89,7 @@ export function Header() {
                   variant="ghost"
                   size="sm"
                   asChild
-                  className="text-amber-700 hover:text-slate-700 hover:bg-amber-50"
+                  className="text-primary hover:text-foreground hover:bg-secondary"
                 >
                   <a href={social.href} target="_blank" rel="noopener noreferrer">
                     <social.icon className="h-4 w-4" />

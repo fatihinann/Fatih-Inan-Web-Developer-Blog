@@ -31,16 +31,16 @@ export function Hero() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif text-amber-900 mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif text-muted-foreground mb-6 leading-tight">
             {t('hero.title')}{' '}
-            <span className="text-orange-700">Fatih</span>
+            <span className="text-night">Fatih</span>
             <br />
-            <span className="text-ring">{t('hero.subtitle')}</span>
+            <span className="text-primary">{t('hero.subtitle')}</span>
           </h1>
 
           {/* Typewriter Subtitle */}
           <div className="mb-8 h-16 flex items-center justify-center">
-            <p className="text-xl md:text-2xl text-amber-800 font-light">
+            <p className="text-xl md:text-2xl text-secondary-foreground font-light">
               {displayText}
               <motion.span
                 animate={{ opacity: [1, 0] }}
@@ -63,7 +63,7 @@ export function Hero() {
             <Link href="/blog">
               <Button
                 size="lg"
-                className="bg-slate-700 hover:bg-slate-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="bg-night hover:bg-slate-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 {t('hero.cta')}
                 <ChevronDown className="ml-2 h-5 w-5" />
@@ -74,7 +74,7 @@ export function Hero() {
 
         {/* Floating elements for visual interest */}
         <motion.div
-          className="absolute top-20 left-10 w-20 h-20 rounded-full bg-orange-200 opacity-30"
+          className="absolute top-20 left-10 w-20 h-20 rounded-full bg-secondary opacity-30"
           animate={{
             y: [0, -20, 0],
             rotate: [0, 180, 360],
@@ -86,7 +86,7 @@ export function Hero() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-16 h-16 rounded-full bg-amber-200 opacity-40"
+          className="absolute bottom-20 right-10 w-16 h-16 rounded-full bg-accent opacity-40"
           animate={{
             y: [0, 20, 0],
             rotate: [0, -180, -360],
@@ -109,7 +109,7 @@ export function Hero() {
           ease: 'easeInOut',
         }}
       >
-        <ChevronDown className="h-6 w-6 text-amber-700" />
+        <ChevronDown className="h-6 w-6 text-primary" />
       </motion.div>
     </div>
   );

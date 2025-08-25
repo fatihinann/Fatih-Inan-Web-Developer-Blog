@@ -23,13 +23,13 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="footer-theme text-white">
+    <footer className="bg-background">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-serif text-amber-400 mb-4">Fatih İnan</h3>
-            <p className="text-slate-300 mb-4 max-w-md">
+            <h3 className="text-2xl font-serif text-primary mb-4">Fatih İnan</h3>
+            <p className="text-foreground mb-4 max-w-md">
               {t('footer.description')}
             </p>
             <div className="flex space-x-4">
@@ -39,7 +39,7 @@ export const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-amber-400 transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="h-5 w-5" />
@@ -50,13 +50,13 @@ export const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-amber-400">{t('footer.pages')}</h4>
+            <h4 className="text-lg font-semibold mb-4 text-primary">{t('footer.pages')}</h4>
             <ul className="space-y-2">
               {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-slate-300 hover:text-amber-400 transition-colors"
+                    className="text-foreground hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -67,13 +67,13 @@ export const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-amber-400">{t('footer.contact')}</h4>
-            <div className="space-y-2 text-slate-300">
+            <h4 className="text-lg font-semibold mb-4 text-primary">{t('footer.contact')}</h4>
+            <div className="space-y-2 text-foreground">
               <p>{t('footer.jobTitle')}</p>
               <p>{t('footer.location')}</p>
               <a
                 href="mailto:fatih@fatihinan3437@gmail.com"
-                className="hover:text-amber-400 transition-colors"
+                className="hover:text-primary transition-colors"
               >
                 fatihinan3437@gmail.com
               </a>
@@ -82,7 +82,7 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
+        <div className="border-t border-muted mt-8 pt-8 text-center text-footer-muted">
           <p>&copy; {currentYear} Fatih İnan. {t('footer.copyright')}</p>
         </div>
       </div>

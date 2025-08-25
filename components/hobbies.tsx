@@ -100,9 +100,7 @@ export function Hobbies() {
   const visibleHobbies = showAll ? hobbies : hobbies.slice(0, 3);
 
   return (
-    <div className="hobbies-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
-      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
-    }}>
+    <div className="min-h-screen bg-gradient-theme">
       <div className="container mx-auto px-4 pt-20 pb-8">
         {/* Header */}
         <motion.div
@@ -111,11 +109,11 @@ export function Hobbies() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
+          <h1 className="text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
             {t('hobbies.title')}
           </h1>
-          <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('hobbies.description')}
           </p>
         </motion.div>
@@ -127,7 +125,7 @@ export function Hobbies() {
           transition={{ delay: 0.2, duration: 0.4 }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl font-serif text-slate-700 mb-6">
+          <h2 className="text-2xl font-serif text-foreground mb-6">
             {t('hobbies.platforms')}
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
@@ -136,7 +134,7 @@ export function Hobbies() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 cursor-pointer">
                 <Github className="w-4 h-4 mr-2" />
                 Github
               </Button>
@@ -146,7 +144,7 @@ export function Hobbies() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 cursor-pointer">
                 <Camera className="w-4 h-4 mr-2" />
                 Instagram
               </Button>
@@ -156,7 +154,7 @@ export function Hobbies() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 cursor-pointer">
                 <Headphones className="w-4 h-4 mr-2" />
                 Spotify
               </Button>
@@ -166,7 +164,7 @@ export function Hobbies() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 cursor-pointer">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 cursor-pointer">
                 <Film className="w-4 h-4 mr-2" />
                 Letterboxd
               </Button>
@@ -185,10 +183,10 @@ export function Hobbies() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group cursor-pointer"
             >
-              <Card className="border-amber-200 hover:shadow-2xl transition-all duration-300 overflow-hidden h-full">
+              <Card className="border-border hover:shadow-2xl transition-all duration-300 overflow-hidden h-full hover:border-primary">
                 <CardContent className="p-0">
                   {/* Image Section */}
-                  <div className="relative w-full h-64 bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden">
+                  <div className="relative w-full h-64 bg-gradient-to-br from-secondary to-accent overflow-hidden">
                     <motion.div
                       className="absolute inset-0 flex items-center justify-center"
                       whileHover={{ scale: 1.1 }}
@@ -213,7 +211,7 @@ export function Hobbies() {
 
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-white/90 text-amber-700 border-0">
+                      <Badge className="bg-card/90 text-primary border-0">
                         {t(hobby.category)}
                       </Badge>
                     </div>
@@ -229,11 +227,11 @@ export function Hobbies() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <CardTitle className="text-xl font-serif text-slate-700 mb-3 group-hover:text-amber-800 transition-colors">
+                    <CardTitle className="text-xl font-serif text-foreground mb-3 group-hover:text-primary transition-colors">
                       {t(hobby.title)}
                     </CardTitle>
 
-                    <p className="text-slate-600 mb-4 leading-relaxed">
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
                       {t(hobby.description)}
                     </p>
 
@@ -245,7 +243,7 @@ export function Hobbies() {
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ x: 5 }}
-                          className="flex items-center text-amber-700 font-medium text-sm hover:text-amber-800 transition-colors cursor-pointer"
+                          className="flex items-center text-primary font-medium text-sm hover:text-primary/80 transition-colors cursor-pointer"
                         >
                           {t('hobbies.films&Music.films')}
                           <ExternalLink className="w-3 h-3 ml-2" />
@@ -257,7 +255,7 @@ export function Hobbies() {
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ x: 5 }}
-                          className="flex items-center text-amber-700 font-medium text-sm hover:text-amber-800 transition-colors cursor-pointer"
+                          className="flex items-center text-primary font-medium text-sm hover:text-primary/80 transition-colors cursor-pointer"
                         >
                           {t('hobbies.films&Music.music')}
                           <ExternalLink className="w-3 h-3 ml-2" />
@@ -274,7 +272,7 @@ export function Hobbies() {
         <div className="text-center mt-8">
           <Button
             variant="outline"
-            className="border-amber-300 text-amber-700 hover:bg-amber-50"
+            className="border-primary text-primary hover:bg-primary/10"
             onClick={() => setShowAll(!showAll)}
           >
             {showAll ? t('less') : t('more')}

@@ -128,7 +128,7 @@ export function Blog() {
   };
 
   const SkeletonCard = () => (
-    <Card className="border-amber-200">
+    <Card className="border-border">
       <CardContent className="p-0">
         <div className="w-full h-48 bg-gray-200 animate-pulse rounded-t-lg"></div>
         <div className="p-6">
@@ -146,9 +146,7 @@ export function Blog() {
   );
 
   return (
-    <div className="blog-theme min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" style={{
-      background: `linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end))`
-    }}>
+    <div className="min-h-screen bg-gradient-theme">
       <div className="container mx-auto px-4 pt-20 pb-8">
         {/* Header */}
         <motion.div
@@ -157,7 +155,7 @@ export function Blog() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl lg:text-5xl font-serif text-amber-900 mb-6 leading-tight">
+          <h1 className="text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -166,8 +164,8 @@ export function Blog() {
               Blog
             </motion.span>
           </h1>
-          <div className="w-24 h-1 bg-orange-400 mx-auto mb-6"></div>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('blog.description')}
           </p>
         </motion.div>
@@ -185,8 +183,8 @@ export function Blog() {
               variant={selectedCategory === category.value ? "default" : "outline"}
               onClick={() => handleCategoryChange(category.value)}
               className={`transition-all duration-200 ${selectedCategory === category.value
-                ? 'bg-slate-700 hover:bg-slate-800 text-white'
-                : 'border-amber-300 text-amber-700 hover:bg-amber-50'
+                ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
+                : 'border-primary text-primary hover:bg-primary/10'
                 }`}
             >
               {category.label}
@@ -225,12 +223,12 @@ export function Blog() {
                   whileHover={{ y: -5 }}
                   className="group cursor-pointer"
                 >
-                  <Card className="border-amber-200 hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
+                  <Card className="border-border hover:shadow-xl transition-all duration-300 overflow-hidden h-full hover:border-primary">
                     <CardContent className="p-0">
                       {/* Image */}
-                      <div className="relative w-full h-48 bg-gradient-to-br from-amber-100 to-orange-100 overflow-hidden">
+                      <div className="relative w-full h-48 bg-gradient-to-br from-secondary to-accent overflow-hidden">
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="text-4xl text-amber-600">📖</div>
+                          <div className="text-4xl text-primary">📖</div>
                         </div>
                         <motion.div
                           className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
@@ -241,30 +239,30 @@ export function Blog() {
                       {/* Content */}
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-3">
-                          <Badge variant="secondary" className="bg-amber-100 text-amber-700">
+                          <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
                             {t(`blog.filters.${post.category}`)}
                           </Badge>
-                          <div className="flex items-center text-xs text-slate-500">
+                          <div className="flex items-center text-xs text-muted-foreground">
                             <Clock className="w-3 h-3 mr-1" />
                             {post.readTime} {t('blog.posts.min')}
                           </div>
                         </div>
 
-                        <CardTitle className="text-xl font-serif text-slate-700 mb-3 group-hover:text-amber-800 transition-colors">
+                        <CardTitle className="text-xl font-serif text-foreground mb-3 group-hover:text-primary transition-colors">
                           {t(post.title)}
                         </CardTitle>
 
-                        <p className="text-slate-600 mb-4 line-clamp-3">
+                        <p className="text-muted-foreground mb-4 line-clamp-3">
                           {t(post.excerpt)}
                         </p>
 
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center text-sm text-slate-500">
+                          <div className="flex items-center text-sm text-muted-foreground">
                             <Calendar className="w-4 h-4 mr-2" />
                             {post.date.day} {t(post.date.month)} {post.date.year}
                           </div>
                           <motion.div
-                            className="flex items-center text-amber-700 font-medium text-sm"
+                            className="flex items-center text-primary font-medium text-sm"
                             whileHover={{ x: 5 }}
                           >
                             {t('readMore')}
@@ -291,7 +289,7 @@ export function Blog() {
             <Button
               variant="outline"
               size="lg"
-              className="border-amber-300 text-amber-700 hover:bg-amber-50"
+              className="border-primary text-primary hover:bg-primary/10"
             >
               {t('loadMore')}
             </Button>
