@@ -52,6 +52,27 @@
       "design": "Design",
       "personal": "Personal Articles"
     },
+    "urls": {
+      "categories": {
+        "web": "web-development",
+        "design": "design",
+        "personal": "personal"
+      },
+      "slugs": {
+        "web": {
+          "post1": "typescript-modern-web",
+          "post2": "found-job-in-software-development"
+        },
+        "design": {
+          "post1": "minimalist-design",
+          "post2": "color-theory"
+        },
+        "personal": {
+          "post1": "camping-and-coding",
+          "post2": "motorcycle-creativity"
+        }
+      }
+    },
     "posts": {
       "web": {
         "post1": {
@@ -59,8 +80,8 @@
           "description": "Ways and best practices to develop safer and more sustainable web applications with TypeScript."
         },
         "post2": {
-          "title": "State Management with React Hooks",
-          "description": "Usage of hooks for state management and performance optimizations in modern React applications."
+          "title": "Breaking the Vicious Cycle: Ways to Progress on the Software Journey",
+          "description": "That's the situation I'm in right now. I want to build my portfolio by creating a website consultant website for my cousin."
         }
       },
       "design": {

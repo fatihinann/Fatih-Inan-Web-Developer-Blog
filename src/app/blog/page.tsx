@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Blog } from "../../../components/blog";
+import { Blog } from "@/../components/blog";
 import Script from 'next/script';
 
 export const metadata: Metadata = {

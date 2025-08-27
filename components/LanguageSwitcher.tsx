@@ -1,24 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from './ui/button';
 import { Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const LANGUAGE_KEY = 'preferred-language';
+
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const languages = [
     { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
     { code: 'en', name: 'English', flag: '🇺🇸' }
   ];
 
+  // İlk yükleme kontrolü ve dil ayarı
+  useEffect(() => {
+    if (!isInitialized) {
+      const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+      const initialLang = savedLanguage || 'tr'; // Varsayılan olarak Türkçe
+      i18n.changeLanguage(initialLang);
+      setIsInitialized(true);
+    }
+  }, [i18n, isInitialized]);
+
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem(LANGUAGE_KEY, lng);
     setIsOpen(false);
   };
 

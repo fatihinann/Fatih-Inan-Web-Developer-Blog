@@ -2,23 +2,28 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
+import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { BlogCard } from '../components/ui/blog-card';
 
-interface BlogDate {
-  day: string;
-  month: string;
-  year: string;
-}
-interface BlogPost {
+export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  category: string;
-  date: BlogDate;
+  slug: {
+    tr: string;
+    en: string;
+  };
+  category: {
+    tr: string;
+    en: string;
+  };
+  date: {
+    day: string;
+    month: string;
+    year: string;
+  };
   readTime: string;
   image: string;
 }
@@ -40,7 +45,14 @@ export function Blog() {
       id: '1',
       title: 'blog.posts.web.post1.title',
       excerpt: 'blog.posts.web.post1.description',
-      category: 'web',
+      slug: {
+        tr: 'modern-web-gelistirme',
+        en: 'modern-web-development'
+      },
+      category: {
+        tr: 'web',
+        en: 'web'
+      },
       date: {
         day: '15',
         month: 'blog.posts.months.mar',
@@ -51,9 +63,16 @@ export function Blog() {
     },
     {
       id: '2',
-      title: 'blog.posts.web.post2.title',
+      title: 'blog.posts.web.post2.title', 
       excerpt: 'blog.posts.web.post2.description',
-      category: 'web',
+      slug: {
+        tr: 'yazilimda-ilk-is-tecrubesi',
+        en: 'found-job-in-software-development'
+      },
+      category: {
+        tr: 'web',
+        en: 'web'
+      },
       date: {
         day: '3',
         month: 'blog.posts.months.jun',
@@ -66,7 +85,14 @@ export function Blog() {
       id: '3',
       title: 'blog.posts.design.post1.title',
       excerpt: 'blog.posts.design.post1.description',
-      category: 'design',
+      slug: {
+        tr: 'arayuz-tasarim-prensipleri',
+        en: 'ui-design-principles'
+      },
+      category: {
+        tr: 'tasarim',
+        en: 'design'
+      },
       date: {
         day: '9',
         month: 'blog.posts.months.nov',
@@ -79,7 +105,14 @@ export function Blog() {
       id: '4',
       title: 'blog.posts.design.post2.title',
       excerpt: 'blog.posts.design.post2.description',
-      category: 'design',
+      slug: {
+        tr: 'kullanici-deneyimi',
+        en: 'user-experience'
+      },
+      category: {
+        tr: 'tasarim',
+        en: 'design'
+      },
       date: {
         day: '26',
         month: 'blog.posts.months.aug',
@@ -92,7 +125,14 @@ export function Blog() {
       id: '5',
       title: 'blog.posts.personal.post1.title',
       excerpt: 'blog.posts.personal.post1.description',
-      category: 'personal',
+      slug: {
+        tr: 'turkiyede-en-iyi-rotalar',
+        en: 'best-routes-in-turkey'
+      },
+      category: {
+        tr: 'kisisel',
+        en: 'personal'
+      },
       date: {
         day: '21',
         month: 'blog.posts.months.aug',
@@ -105,7 +145,14 @@ export function Blog() {
       id: '6',
       title: 'blog.posts.personal.post2.title',
       excerpt: 'blog.posts.personal.post2.description',
-      category: 'personal',
+      slug: {
+        tr: 'seyahat-ipuclari',
+        en: 'travel-tips'
+      },
+      category: {
+        tr: 'kisisel',
+        en: 'personal'
+      },
       date: {
         day: '8',
         month: 'blog.posts.months.apr',
@@ -116,9 +163,12 @@ export function Blog() {
     }
   ];
 
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language as 'tr' | 'en';
+
   const filteredPosts = selectedCategory === 'all'
     ? blogPosts
-    : blogPosts.filter(post => post.category === selectedCategory);
+    : blogPosts.filter(post => post.category[currentLang] === selectedCategory);
 
   const handleCategoryChange = (category: string) => {
     setIsLoading(true);
@@ -221,57 +271,8 @@ export function Blog() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05, duration: 0.4 }}
                   whileHover={{ y: -5 }}
-                  className="group cursor-pointer"
                 >
-                  <Card className="border-border hover:shadow-xl transition-all duration-300 overflow-hidden h-full hover:border-primary">
-                    <CardContent className="p-0">
-                      {/* Image */}
-                      <div className="relative w-full h-48 bg-gradient-to-br from-secondary to-accent overflow-hidden">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="text-4xl text-primary">📖</div>
-                        </div>
-                        <motion.div
-                          className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                          whileHover={{ scale: 1.1 }}
-                        />
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-3">
-                          <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                            {t(`blog.filters.${post.category}`)}
-                          </Badge>
-                          <div className="flex items-center text-xs text-muted-foreground">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {post.readTime} {t('blog.posts.min')}
-                          </div>
-                        </div>
-
-                        <CardTitle className="text-xl font-serif text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {t(post.title)}
-                        </CardTitle>
-
-                        <p className="text-muted-foreground mb-4 line-clamp-3">
-                          {t(post.excerpt)}
-                        </p>
-
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center text-sm text-muted-foreground">
-                            <Calendar className="w-4 h-4 mr-2" />
-                            {post.date.day} {t(post.date.month)} {post.date.year}
-                          </div>
-                          <motion.div
-                            className="flex items-center text-primary font-medium text-sm"
-                            whileHover={{ x: 5 }}
-                          >
-                            {t('readMore')}
-                            <ArrowRight className="w-4 h-4 ml-1" />
-                          </motion.div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <BlogCard post={post} />
                 </motion.div>
               ))}
             </motion.div>
@@ -291,7 +292,7 @@ export function Blog() {
               size="lg"
               className="border-primary text-primary hover:bg-primary/10"
             >
-              {t('loadMore')}
+              {t('more')}
             </Button>
           </motion.div>
         )}

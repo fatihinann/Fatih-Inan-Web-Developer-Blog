@@ -52,6 +52,27 @@
       "design": "Tasarım",
       "personal": "Kişisel Yazılar"
     },
+    "urls": {
+      "categories": {
+        "web": "web-gelistirme",
+        "design": "tasarim",
+        "personal": "kisisel"
+      },
+      "slugs": {
+        "web": {
+          "post1": "typescript-modern-web",
+          "post2": "yazilimda-ilk-isinizi-bulmak"
+        },
+        "design": {
+          "post1": "minimalist-tasarim",
+          "post2": "renk-teorisi"
+        },
+        "personal": {
+          "post1": "kamp-ve-kodlama",
+          "post2": "motosiklet-yaraticilik"
+        }
+      }
+    },
     "posts": {
       "web": {
         "post1": {
@@ -59,8 +80,8 @@
           "description": "TypeScript ile daha güvenli ve sürdürülebilir web uygulamaları geliştirmenin yolları ve en iyi pratikler."
         },
         "post2": {
-          "title": "React Hook'larıyla State Yönetimi",
-          "description": "Modern React uygulamalarında state yönetimi için hook kullanımı ve performans optimizasyonları."
+          "title": "Kısır Döngüyü Sonlandırmak: Yazılım Yolculuğunda İlerlemenin Yolları",
+          "description": "Benimde şu an içinde bulunduğum o durum. Kuzenime site danışman sitesi yaparak portfolyomu geliştirmek istiyorum."
         }
       },
       "design": {

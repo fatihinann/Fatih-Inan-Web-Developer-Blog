@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
+    mdxRs: true,
   },
-}
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
