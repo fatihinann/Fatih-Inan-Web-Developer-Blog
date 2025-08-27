@@ -166,17 +166,40 @@ const MarkdownComponents = {
   ),
 }
 
-export default async function BlogPostPage({ params }: BlogPostProps) {
-  const slug = params.slug.join('/')
+type CategoryInfo = {
+  locale: string;
+  display: string;
+}
+
+type CategoryMap = {
+  [key: string]: CategoryInfo;
+}
+
+const getCategoryInfo = (params: BlogPostProps['params']) => {
+  const category = params.slug[0]
   
-  // İlk parametre kategori, bu yüzden onu kontrol ederek dili belirleyelim
-  let locale = 'tr'
-  if (params.slug[0] === 'web') { // İngilizce kategori
-    locale = 'en'
-  } else if (params.slug[0] === 'tasarim') { // Türkçe kategori
-    locale = 'tr'
+  // Kategori dil eşleşmeleri
+  const categoryMap: CategoryMap = {
+    // İngilizce kategoriler
+    'web': { locale: 'en', display: 'Web Development' },
+    'design': { locale: 'en', display: 'Design' },
+    'personal': { locale: 'en', display: 'Personal' },
+    // Türkçe kategoriler
+    'web-gelistirme': { locale: 'tr', display: 'Web Geliştirme' },
+    'tasarim': { locale: 'tr', display: 'Tasarım' },
+    'kisisel': { locale: 'tr', display: 'Kişisel' },
   }
-  
+
+  return {
+    slug: params.slug.join('/'),
+    category,
+    locale: categoryMap[category]?.locale || 'tr',
+    displayName: categoryMap[category]?.display || category
+  }
+}
+
+export default async function BlogPostPage({ params }: BlogPostProps) {
+  const { slug, locale, displayName } = await getCategoryInfo(params)
   const post = await getBlogPost(slug, locale)
 
   if (!post) {
@@ -207,11 +230,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             <Badge 
               className="mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
             >
-              {params.slug[0] === 'web' && 'Web Development'}
-              {params.slug[0] === 'design' && 'Design'}
-              {params.slug[0] === 'tasarim' && 'Tasarım'}
-              {params.slug[0] === 'personal' && 'Personal'}
-              {params.slug[0] === 'kisisel' && 'Kişisel'}
+              {displayName}
             </Badge>
             
             <h1 className="text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
@@ -328,15 +347,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
 
 // SEO için metadata generate et
 export async function generateMetadata({ params }: BlogPostProps) {
-  const slug = params.slug.join('/')
-  
-  // İlk parametre kategori, bu yüzden onu kontrol ederek dili belirleyelim
-  let locale = 'tr'
-  if (params.slug[0] === 'web') { // İngilizce kategori
-    locale = 'en'
-  } else if (params.slug[0] === 'tasarim') { // Türkçe kategori
-    locale = 'tr'
-  }
+  const { slug, locale } = await getCategoryInfo(params)
   
   const post = await getBlogPost(slug, locale)
 

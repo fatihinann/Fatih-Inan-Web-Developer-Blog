@@ -11,22 +11,32 @@ const LANGUAGE_KEY = 'preferred-language';
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const languages = [
     { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
     { code: 'en', name: 'English', flag: '🇺🇸' }
   ];
 
-  // İlk yükleme kontrolü ve dil ayarı
+  // Hydration için mounting kontrolü
   useEffect(() => {
-    if (!isInitialized) {
+    setMounted(true);
+  }, []);
+
+  // Sadece ilk girişte dil kontrolü yap
+  useEffect(() => {
+    if (mounted) {
       const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
-      const initialLang = savedLanguage || 'tr'; // Varsayılan olarak Türkçe
-      i18n.changeLanguage(initialLang);
-      setIsInitialized(true);
+      // Sadece localStorage'da dil tercihi yoksa Türkçe'ye çevir
+      if (!savedLanguage) {
+        i18n.changeLanguage('tr');
+        localStorage.setItem(LANGUAGE_KEY, 'tr');
+      } else {
+        // Kayıtlı dil varsa onu kullan
+        i18n.changeLanguage(savedLanguage);
+      }
     }
-  }, [i18n, isInitialized]);
+  }, [mounted, i18n]);
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 

@@ -140,24 +140,58 @@ export default function BlogPost({ params }: BlogPostProps) {
   const [post, setPost] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
+  // URL'den kategori ve slug bilgisini al
+  const getPostSlugInfo = () => {
+    const [category, ...rest] = params.slug;
+    return {
+      category,
+      slug: rest.join('/')
+    };
+  };
+
+  // Dil değiştiğinde URL'i güncelle ve içeriği yeniden yükle
   useEffect(() => {
     async function loadPost() {
-      setLoading(true)
-      const slug = params.slug.join('/')
-      const locale = i18n.language || 'tr'
+      setLoading(true);
+      const { category, slug } = getPostSlugInfo();
+      const currentLang = i18n.language || 'tr';
+
+      // İngilizce kategorilere göre eşleştirme yap
+      const categoryMap: Record<string, Record<string, string>> = {
+        'tr': {
+          'web-gelistirme': 'web',
+          'tasarim': 'design',
+          'kisisel': 'personal'
+        },
+        'en': {
+          'web': 'web',
+          'design': 'design',
+          'personal': 'personal'
+        }
+      };
+
+      // Mevcut URL'deki kategoriyi bul
+      const currentCategory = categoryMap[currentLang === 'tr' ? 'en' : 'tr'][category];
       
-      // API endpoint'ten içeriği yükle
-      const response = await fetch(`/api/blog/${slug}?locale=${locale}`)
-      if (!response.ok) {
-        notFound()
+      if (currentCategory) {
+        // Yeni dildeki URL'e yönlendir
+        const newCategory = categoryMap[currentLang][currentCategory];
+        const newURL = `/blog/${newCategory}/${slug}`;
+        window.history.pushState({}, '', newURL);
       }
-      const postData = await response.json()
-      setPost(postData)
-      setLoading(false)
+
+      // İçeriği yeni dilde yükle
+      const response = await fetch(`/api/blog/${params.slug.join('/')}?locale=${currentLang}`);
+      if (!response.ok) {
+        notFound();
+      }
+      const postData = await response.json();
+      setPost(postData);
+      setLoading(false);
     }
 
-    loadPost()
-  }, [params.slug, i18n.language])
+    loadPost();
+  }, [params.slug, i18n.language]);
 
   if (loading) {
     return (

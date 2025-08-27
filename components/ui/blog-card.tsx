@@ -10,7 +10,6 @@ interface BlogCardProps {
 
 export function BlogCard({ post }: BlogCardProps) {
   const { t } = useTranslation();
-
   const { i18n } = useTranslation();
   const currentLang = i18n.language as 'tr' | 'en';
   
@@ -19,7 +18,7 @@ export function BlogCard({ post }: BlogCardProps) {
       <Card className="cursor-pointer border-border hover:shadow-xl transition-all duration-300 overflow-hidden h-full hover:border-primary">
         <CardHeader>
           <Badge variant="secondary" className="w-fit bg-primary/10 text-primary border-primary/20">
-            {t(`blog.filters.${post.category[currentLang]}`)}
+            {t(`blog.filters.${post.category.en}`)}
           </Badge>
           <CardTitle className="text-xl font-serif text-foreground group-hover:text-primary transition-colors">{t(post.title)}</CardTitle>
           <CardDescription className="text-muted-foreground line-clamp-3">{t(post.excerpt)}</CardDescription>

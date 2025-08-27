@@ -4,7 +4,7 @@ excerpt: "Learn the powerful features and modern web development practices of Ne
 date: "2024-03-15"
 author: "Fatih İnan"
 category: "web"
-image: "/assets/images/blog/web-development.jpg"
+image: "/assets/images/blog/next.png"
 readTime: "8"
 locale: "en"
 slug: "modern-web-development"

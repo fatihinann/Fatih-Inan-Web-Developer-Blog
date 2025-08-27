@@ -4,7 +4,7 @@ excerpt: "Next.js 13'ün güçlü özelliklerini ve modern web geliştirme prati
 date: "2024-03-15"
 author: "Fatih İnan"
 category: "web"
-image: "/assets/images/blog/web-development.jpg"
+image: "/assets/images/blog/next.png"
 readTime: "8"
 locale: "tr"
 slug: "modern-web-gelistirme"
