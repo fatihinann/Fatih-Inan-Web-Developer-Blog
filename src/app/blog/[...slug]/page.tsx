@@ -13,9 +13,9 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 
 interface BlogPostProps {
-  params: {
+  params: Promise<{
     slug: string[]
-  }
+  }>
 }
 
 // Markdown dosyasını oku ve parse et
@@ -175,8 +175,9 @@ type CategoryMap = {
   [key: string]: CategoryInfo;
 }
 
-const getCategoryInfo = (params: BlogPostProps['params']) => {
-  const category = params.slug[0]
+const getCategoryInfo = async (params: BlogPostProps['params']) => {
+  const resolvedParams = await params
+  const category = resolvedParams.slug[0]
   
   // Kategori dil eşleşmeleri
   const categoryMap: CategoryMap = {
@@ -191,7 +192,7 @@ const getCategoryInfo = (params: BlogPostProps['params']) => {
   }
 
   return {
-    slug: params.slug.join('/'),
+    slug: resolvedParams.slug.join('/'),
     category,
     locale: categoryMap[category]?.locale || 'tr',
     displayName: categoryMap[category]?.display || category
