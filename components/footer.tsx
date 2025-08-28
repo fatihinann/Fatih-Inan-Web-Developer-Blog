@@ -48,35 +48,37 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-primary">{t('footer.pages')}</h4>
-            <ul className="space-y-2">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-foreground hover:text-primary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className='gap-8 sm:gap-0 flex justify-around md:justify-between col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2'>
+            {/* Navigation */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4 text-primary">{t('footer.pages')}</h4>
+              <ul className="space-y-2">
+                {navigation.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-foreground hover:text-primary transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-primary">{t('footer.contact')}</h4>
-            <div className="space-y-2 text-foreground">
-              <p>{t('footer.jobTitle')}</p>
-              <p>{t('footer.location')}</p>
-              <a
-                href="mailto:fatih@fatihinan3437@gmail.com"
-                className="hover:text-primary transition-colors"
-              >
-                fatihinan3437@gmail.com
-              </a>
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4 text-primary">{t('footer.contact')}</h4>
+              <div className="space-y-2 text-foreground">
+                <p>{t('footer.jobTitle')}</p>
+                <p>{t('footer.location')}</p>
+                <a
+                  href="mailto:fatih@fatihinan3437@gmail.com"
+                  className="hover:text-primary transition-colors"
+                >
+                  fatihinan3437@gmail.com
+                </a>
+              </div>
             </div>
           </div>
         </div>

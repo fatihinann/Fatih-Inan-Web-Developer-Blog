@@ -29,15 +29,17 @@ export interface BlogPost {
 }
 
 export function Blog() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
 
+  const currentLang = i18n.language as 'tr' | 'en';
+
   const categories = [
-    { value: "all", label: t('blog.filters.all') },
-    { value: "web", label: t('blog.filters.web') },
-    { value: "design", label: t('blog.filters.design') },
-    { value: "personal", label: t('blog.filters.personal') }
+    { value: 'all', label: t('blog.filters.all') },
+    { value: currentLang === 'tr' ? 'web-gelistirme' : 'web', label: t('blog.filters.web') },
+    { value: currentLang === 'tr' ? 'tasarim' : 'design', label: t('blog.filters.design') },
+    { value: currentLang === 'tr' ? 'kisisel' : 'personal', label: t('blog.filters.personal') }
   ];
 
   const blogPosts: BlogPost[] = [
@@ -63,7 +65,7 @@ export function Blog() {
     },
     {
       id: '2',
-      title: 'blog.posts.web.post2.title', 
+      title: 'blog.posts.web.post2.title',
       excerpt: 'blog.posts.web.post2.description',
       slug: {
         tr: 'yazilimda-ilk-is-tecrubesi',
@@ -163,18 +165,17 @@ export function Blog() {
     }
   ];
 
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language as 'tr' | 'en';
-
   const filteredPosts = selectedCategory === 'all'
     ? blogPosts
     : blogPosts.filter(post => post.category[currentLang] === selectedCategory);
 
   const handleCategoryChange = (category: string) => {
+    if (selectedCategory === category) {
+      return;
+    }
     setIsLoading(true);
     setSelectedCategory(category);
-    // Simulate loading delay
-    setTimeout(() => setIsLoading(false), 300);
+    setTimeout(() => setIsLoading(false), 250);
   };
 
   const SkeletonCard = () => (

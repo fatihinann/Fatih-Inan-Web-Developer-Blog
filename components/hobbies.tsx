@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -97,7 +97,19 @@ export function Hobbies() {
   ];
 
   const [showAll, setShowAll] = useState(false);
-  const visibleHobbies = showAll ? hobbies : hobbies.slice(0, 3);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const getInitialCount = () => {
+    if (windowWidth >= 1024) return 3; // lg: 3 items (3 columns)
+    if (windowWidth >= 640) return 4;  // md: 4 items (2 columns, 2 rows)
+    return 3; // mobile: 3 items
+  };
+  const visibleHobbies = showAll ? hobbies : hobbies.slice(0, getInitialCount());
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-theme">
@@ -173,7 +185,7 @@ export function Hobbies() {
         </motion.div>
 
         {/* Hobbies Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleHobbies.map((hobby, index) => (
             <motion.div
               key={hobby.id}
