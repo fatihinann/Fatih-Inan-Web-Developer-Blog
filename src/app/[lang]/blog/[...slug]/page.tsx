@@ -1,6 +1,6 @@
-// app/[lang]/blog/[...slug]/page.tsx
 import { notFound } from 'next/navigation'
-import { getBlogPost, getCategoryDisplayName } from '@/lib/blog'
+import { getBlogPost } from '@/lib/blog'
+import { getCategoryDisplayName } from '@/lib/blogUtils'
 import BlogPostClient from './BlogPostClient'
 import { Metadata } from 'next'
 
@@ -15,7 +15,7 @@ interface BlogPostProps {
 export default async function BlogPostPage({ params }: BlogPostProps) {
   const { lang, slug } = params
   const post = await getBlogPost(lang, slug)
-
+  
   if (!post) {
     notFound()
   }

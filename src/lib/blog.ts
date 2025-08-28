@@ -34,16 +34,3 @@ export async function getBlogPost(locale: string, slug: string[]) {
     return null
   }
 }
-
-// Kategori adlarını dil eşleşmesine göre döndürür
-export async function getCategoryDisplayName(category: string) {
-    const categoryMap: Record<string, string> = {
-        'web': 'Web Development',
-        'web-gelistirme': 'Web Geliştirme',
-        'design': 'Design',
-        'tasarim': 'Tasarım',
-        'personal': 'Personal',
-        'kisisel': 'Kişisel',
-    }
-    return categoryMap[category] || category
-}
