@@ -50,7 +50,7 @@ export function Blog() {
         en: 'modern-web-development'
       },
       category: {
-        tr: 'web',
+        tr: 'web-gelistirme',
         en: 'web'
       },
       date: {
@@ -70,7 +70,7 @@ export function Blog() {
         en: 'found-job-in-software-development'
       },
       category: {
-        tr: 'web',
+        tr: 'web-gelistirme',
         en: 'web'
       },
       date: {

@@ -1,3 +1,4 @@
+// components/ui/LanguageSwitcher.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -5,10 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { Button } from './ui/button';
 import { Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter, usePathname } from 'next/navigation';
 
 const LANGUAGE_KEY = 'preferred-language';
 
 export function LanguageSwitcher() {
+  const router = useRouter();
+  const pathname = usePathname();
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -18,31 +22,63 @@ export function LanguageSwitcher() {
     { code: 'en', name: 'English', flag: '🇺🇸' }
   ];
 
-  // Hydration için mounting kontrolü
+  // Kategori ve slug (dosya adı) eşleştirme haritaları
+  const categoryMap: Record<string, string> = {
+    'web-gelistirme': 'web',
+    'tasarim': 'design',
+    'kisisel': 'personal',
+    'web': 'web-gelistirme',
+    'design': 'tasarim',
+    'personal': 'kisisel',
+  };
+
+  const slugMap: Record<string, string> = {
+    'modern-web-gelistirme': 'modern-web-development',
+    'modern-web-development': 'modern-web-gelistirme',
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Sadece ilk girişte dil kontrolü yap
   useEffect(() => {
-    if (mounted) {
-      const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
-      // Sadece localStorage'da dil tercihi yoksa Türkçe'ye çevir
-      if (!savedLanguage) {
-        i18n.changeLanguage('tr');
-        localStorage.setItem(LANGUAGE_KEY, 'tr');
-      } else {
-        // Kayıtlı dil varsa onu kullan
-        i18n.changeLanguage(savedLanguage);
-      }
-    }
+    if (!mounted) return;
+    const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+    const initialLang = savedLanguage || 'tr';
+    i18n.changeLanguage(initialLang);
   }, [mounted, i18n]);
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const changeLanguage = (lng: string) => {
+    if (lng === i18n.language) {
+      setIsOpen(false);
+      return;
+    }
+    const segments = pathname.split('/').filter(Boolean);
+
+    // Blog sayfası URL'si mi kontrol et
+    if (segments.length >= 3 && segments[1] === 'blog') {
+      const currentCategory = segments[2];
+      const currentSlug = segments[3];
+      
+      // Kategori ve slug'ı çevir
+      segments[2] = categoryMap[currentCategory] || currentCategory;
+      segments[3] = slugMap[currentSlug] || currentSlug;
+    }
+
+    // Dil segmentini güncelle
+    if (segments.length > 0 && (segments[0] === 'tr' || segments[0] === 'en')) {
+      segments[0] = lng;
+    } else {
+      segments.unshift(lng);
+    }
+
+    const newPath = '/' + segments.join('/');
+    
     i18n.changeLanguage(lng);
     localStorage.setItem(LANGUAGE_KEY, lng);
+    router.push(newPath);
     setIsOpen(false);
   };
 

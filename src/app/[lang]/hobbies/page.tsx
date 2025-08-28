@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hobbies } from "../../../components/hobbies";
+import { Hobbies } from "@/../components/hobbies";
 
 export const metadata: Metadata = {
   title: "Hobiler - Fatih İnan | Kamp, Motosiklet ve Kişisel İlgi Alanları",

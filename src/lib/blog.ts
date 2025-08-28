@@ -1,33 +1,49 @@
+'use server'
+
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { notFound } from 'next/navigation'
 
-export async function getBlogPost(slug: string, locale: string = 'tr') {
+export async function getBlogPost(locale: string, slug: string[]) {
   try {
-    const [urlCategory, urlSlug] = slug.split('/')
+    const [urlCategory, urlSlug] = slug
 
-    // Doğru dosya konumunu bul (MD dosyaları dil klasörlerinde)
+    // İstenen dildeki dosya yolu
     const mdFilePath = join(process.cwd(), 'src/content/blog', locale, urlCategory, `${urlSlug}.md`)
     
-    // İstenen dilde dosya varsa oku
     if (existsSync(mdFilePath)) {
       const fileContent = readFileSync(mdFilePath, 'utf8')
       const { data: frontmatter, content } = matter(fileContent)
-      return {
-        frontmatter,
-        content
+      return { frontmatter, content }
+    }
+    
+    // İstenen dilde dosya yoksa, Türkçe'ye dön
+    if (locale !== 'tr') {
+      const trFilePath = join(process.cwd(), 'src/content/blog', 'tr', urlCategory, `${urlSlug}.md`)
+      if (existsSync(trFilePath)) {
+        const fileContent = readFileSync(trFilePath, 'utf8')
+        const { data: frontmatter, content } = matter(fileContent)
+        return { frontmatter, content }
       }
     }
     
-    // İstenen dilde yoksa ve İngilizce istenmişse Türkçe'ye dön
-    if (locale === 'en') {
-      return getBlogPost(slug, 'tr')
-    }
-    
-    // Hiçbir dilde bulunamazsa null dön
     return null
   } catch (error) {
     console.error('Blog post okuma hatası:', error)
     return null
   }
+}
+
+// Kategori adlarını dil eşleşmesine göre döndürür
+export async function getCategoryDisplayName(category: string) {
+    const categoryMap: Record<string, string> = {
+        'web': 'Web Development',
+        'web-gelistirme': 'Web Geliştirme',
+        'design': 'Design',
+        'tasarim': 'Tasarım',
+        'personal': 'Personal',
+        'kisisel': 'Kişisel',
+    }
+    return categoryMap[category] || category
 }

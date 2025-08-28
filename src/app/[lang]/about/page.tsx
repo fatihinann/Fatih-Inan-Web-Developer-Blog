@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { About } from "../../../components/about";
+import { About } from "@/../components/about";
 
 export const metadata: Metadata = {
   title: "Hakkımda - Fatih İnan | Web Geliştirici",

@@ -9,18 +9,20 @@ import { useScroll } from '../../src/hooks/useScroll';
 import { ThemeToggle } from '../ThemeToggle';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
-
+import { useParams } from 'next/navigation';
 
 export function Header() {
   const pathname = usePathname();
+  const params = useParams();
+  const lang = params?.lang || 'tr';
   const { isScrolled } = useScroll();
   const { t } = useTranslation();
 
   const navigation = [
-    { name: t('navigation.about'), href: '/about' },
-    { name: t('navigation.blog'), href: '/blog' },
-    { name: t('navigation.hobbies'), href: '/hobbies' },
-    { name: t('navigation.contact'), href: '/contact' }
+    { name: t('navigation.about'), href: `/${lang}/about` },
+    { name: t('navigation.blog'), href: `/${lang}/blog` },
+    { name: t('navigation.hobbies'), href: `/${lang}/hobbies` },
+    { name: t('navigation.contact'), href: `/${lang}/contact` }
   ];
 
   const socialLinks = [

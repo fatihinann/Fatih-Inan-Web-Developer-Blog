@@ -1,54 +1,18 @@
+// app/[lang]/blog/[...slug]/BlogPostClient.tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { notFound } from 'next/navigation'
-import { readFileSync, existsSync } from 'fs'
-import { join } from 'path'
-import matter from 'gray-matter'
+import Image from 'next/image'
+import Link from 'next/link'
 import { Badge } from '@/../components/ui/badge'
 import { Button } from '@/../components/ui/button'
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
-
-interface BlogPostProps {
-  params: Promise<{
-    slug: string[]
-  }>
-}
-
-// Markdown dosyasını oku ve parse et
-async function getBlogPost(slug: string, locale: string = 'tr') {
-  try {
-    // Gelen URL'den kategori ve slug'ı al (TR veya EN olabilir)
-    const [urlCategory, urlSlug] = slug.split('/')
-
-    // Doğru dosya konumunu bul (MD dosyaları dil klasörlerinde)
-    const mdFilePath = join(process.cwd(), 'src/content/blog', locale, urlCategory, `${urlSlug}.md`)
-    
-    // İstenen dilde dosya varsa oku
-    if (existsSync(mdFilePath)) {
-      const fileContent = readFileSync(mdFilePath, 'utf8')
-      const { data: frontmatter, content } = matter(fileContent)
-      return {
-        frontmatter,
-        content
-      }
-    }
-    
-    // İstenen dilde yoksa ve İngilizce istenmişse Türkçe'ye dön
-    if (locale === 'en') {
-      return getBlogPost(slug, 'tr')
-    }
-    
-    // Hiçbir dilde bulunamazsa null dön
-    return null
-  } catch (error) {
-    console.error('Blog post okuma hatası:', error)
-    return null
-  }
-}
 
 // React Markdown için custom componentler
 const MarkdownComponents = {
@@ -166,45 +130,79 @@ const MarkdownComponents = {
   ),
 }
 
-type CategoryInfo = {
-  locale: string;
-  display: string;
+interface BlogPostClientProps {
+  initialPost: {
+    frontmatter: any;
+    content: string;
+  };
+  initialDisplayName: string;
+  lang: string;
+  slug: string;
 }
 
-type CategoryMap = {
-  [key: string]: CategoryInfo;
-}
+export default function BlogPostClient({ initialPost, initialDisplayName }: BlogPostClientProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const [post, setPost] = useState(initialPost)
+  const [displayName, setDisplayName] = useState(initialDisplayName)
+  const [loading, setLoading] = useState(false)
 
-const getCategoryInfo = async (params: BlogPostProps['params']) => {
-  const resolvedParams = await params
-  const category = resolvedParams.slug[0]
-  
-  // Kategori dil eşleşmeleri
-  const categoryMap: CategoryMap = {
-    // İngilizce kategoriler
-    'web': { locale: 'en', display: 'Web Development' },
-    'design': { locale: 'en', display: 'Design' },
-    'personal': { locale: 'en', display: 'Personal' },
-    // Türkçe kategoriler
-    'web-gelistirme': { locale: 'tr', display: 'Web Geliştirme' },
-    'tasarim': { locale: 'tr', display: 'Tasarım' },
-    'kisisel': { locale: 'tr', display: 'Kişisel' },
+  // URL (pathname) değiştiğinde içeriği yeniden getir
+  useEffect(() => {
+    async function fetchNewContent() {
+      // URL'den yeni dil ve slug'ı al
+      const pathSegments = pathname.split('/').filter(Boolean)
+      if (pathSegments.length < 3 || pathSegments[1] !== 'blog') {
+        return notFound() // URL formatı yanlışsa
+      }
+      const newLang = pathSegments[0]
+      const newSlug = pathSegments.slice(2).join('/')
+      
+      setLoading(true)
+
+      try {
+        const response = await fetch(`/api/${newLang}/blog/${newSlug}`)
+        if (!response.ok) {
+          return notFound()
+        }
+        const data = await response.json()
+        setPost(data)
+        // Kategori adını client'ta güncelle
+        const categoryMap: Record<string, string> = {
+          'web': 'Web Development',
+          'web-gelistirme': 'Web Geliştirme',
+          'design': 'Design',
+          'tasarim': 'Tasarım',
+          'personal': 'Personal',
+          'kisisel': 'Kişisel',
+        }
+        setDisplayName(categoryMap[data.frontmatter.category] || data.frontmatter.category)
+      } catch (error) {
+        console.error("Blog post fetch error:", error)
+        notFound()
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    // İlk render'da veriyi prop'tan al, sonraki URL değişimlerinde fetch et
+    // Bu, Next.js'in client-side navigasyonunu tetiklediği zaman çalışır
+    if (initialPost.frontmatter.title !== post.frontmatter.title) {
+        fetchNewContent()
+    }
+  }, [pathname, initialPost])
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        {/* Yüklenme durumu için spinner veya metin */}
+        Yükleniyor...
+      </div>
+    )
   }
-
-  return {
-    slug: resolvedParams.slug.join('/'),
-    category,
-    locale: categoryMap[category]?.locale || 'tr',
-    displayName: categoryMap[category]?.display || category
-  }
-}
-
-export default async function BlogPostPage({ params }: BlogPostProps) {
-  const { slug, locale, displayName } = await getCategoryInfo(params)
-  const post = await getBlogPost(slug, locale)
 
   if (!post) {
-    notFound()
+    return notFound()
   }
 
   const { frontmatter, content } = post
@@ -214,7 +212,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="mb-8 pt-12">
-          <Link href="/blog">
+          <Link href={`/${pathname.split('/')[1]}/blog`}>
             <Button 
               variant="ghost" 
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -344,43 +342,4 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
       </div>
     </div>
   )
-}
-
-// SEO için metadata generate et
-export async function generateMetadata({ params }: BlogPostProps) {
-  const { slug, locale } = await getCategoryInfo(params)
-  
-  const post = await getBlogPost(slug, locale)
-
-  if (!post) {
-    return {
-      title: 'Blog yazısı bulunamadı'
-    }
-  }
-
-  const { frontmatter } = post
-
-  return {
-    title: `${frontmatter.title} | Fatih İnan Blog`,
-    description: frontmatter.excerpt,
-    openGraph: {
-      title: frontmatter.title,
-      description: frontmatter.excerpt,
-      type: 'article',
-      publishedTime: frontmatter.date,
-      authors: [frontmatter.author],
-      images: frontmatter.image ? [
-        {
-          url: frontmatter.image,
-          alt: frontmatter.title,
-        }
-      ] : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: frontmatter.title,
-      description: frontmatter.excerpt,
-      images: frontmatter.image ? [frontmatter.image] : [],
-    }
-  }
 }

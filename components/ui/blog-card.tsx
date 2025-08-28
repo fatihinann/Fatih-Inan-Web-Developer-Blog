@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./car
 import { Badge } from "./badge";
 import { BlogPost } from "../blog";
 import { useTranslation } from "react-i18next";
-
+import { useParams } from "next/navigation";
 interface BlogCardProps {
   post: BlogPost;
 }
@@ -12,9 +12,11 @@ export function BlogCard({ post }: BlogCardProps) {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
   const currentLang = i18n.language as 'tr' | 'en';
-  
+  const params = useParams();
+  const lang = params?.lang || 'tr';
+
   return (
-    <Link href={`/blog/${post.category[currentLang]}/${post.slug[currentLang]}`}>
+    <Link href={`/${lang}/blog/${post.category[currentLang]}/${post.slug[currentLang]}`}>
       <Card className="cursor-pointer border-border hover:shadow-xl transition-all duration-300 overflow-hidden h-full hover:border-primary">
         <CardHeader>
           <Badge variant="secondary" className="w-fit bg-primary/10 text-primary border-primary/20">

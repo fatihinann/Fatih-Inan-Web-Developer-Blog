@@ -1,71 +1,45 @@
 import type { Metadata } from "next";
-import "@/app/css/globals.css";
+import "./[lang]/css/globals.css";
 import Providers from './providers'
-import { Header } from "../../components/ui/header";
-import { Footer } from "../../components/footer";
+import { Header } from "@/../components/ui/header";
+import { Footer } from "@/../components/footer";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Fatih İnan | Web Geliştirici ve Teknoloji Tutkunu",
-    template: "%s | Fatih İnan"
-  },
-  description: "Fatih İnan'ın kişisel web sitesi. Web geliştirme, programlama, teknoloji, kamp ve motosiklet tutkusu hakkında yazılar ve projeler.",
-  keywords: "web geliştirici, frontend developer, React, Next.js, JavaScript, TypeScript, Fatih İnan, teknoloji blog, kamp, motosiklet",
-  authors: [{ name: "Fatih İnan" }],
-  creator: "Fatih İnan",
-  publisher: "Fatih İnan",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://fatihinan.com'),
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'tr_TR',
-    url: 'https://fatihinan.com',
-    title: 'Fatih İnan | Web Geliştirici ve Teknoloji Tutkunu',
-    description: 'Web geliştirme, programlama, teknoloji, kamp ve motosiklet tutkusu hakkında yazılar ve projeler.',
-    siteName: 'Fatih İnan',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+    title: {
+        default: "Fatih İnan | Web Geliştirici ve Teknoloji Tutkunu",
+        template: "%s | Fatih İnan"
     },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-  manifest: '/manifest.json',
+    description: "Fatih İnan'ın kişisel web sitesi. Web geliştirme, programlama, teknoloji, kamp ve motosiklet tutkusu hakkında yazılar ve projeler.",
+    metadataBase: new URL('https://fatihinan.com'),
+    alternates: {
+        canonical: '/',
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'tr_TR',
+        url: 'https://fatihinan.com',
+        title: 'Fatih İnan | Web Geliştirici ve Teknoloji Tutkunu',
+        description: 'Web geliştirme, programlama, teknoloji, kamp ve motosiklet tutkusu hakkında yazılar ve projeler.',
+        siteName: 'Fatih İnan',
+    },
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="tr" suppressHydrationWarning>
-      <body>
-        <Providers>
-          <Header />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </Providers>
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="tr" suppressHydrationWarning>
+            <body>
+                <Providers>
+                    <Header />
+                    <main className="min-h-screen">{children}</main>
+                    <Footer />
+                </Providers>
 
-        <style dangerouslySetInnerHTML={{
-          __html: `
+                <style dangerouslySetInnerHTML={{
+                    __html: `
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
             .font-serif { font-family: 'Playfair Display', serif; }
             body { font-family: 'Inter', sans-serif; }
@@ -81,8 +55,9 @@ export default function RootLayout({
             .dark ::-webkit-scrollbar-thumb { background: #f59e0b; }
             .dark ::-webkit-scrollbar-thumb:hover { background: #d97706; }
           `
-        }} />
-      </body>
-    </html>
-  );
+                }} />
+            </body>
+
+        </html>
+    );
 }
