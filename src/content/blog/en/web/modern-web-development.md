@@ -1,11 +1,15 @@
 ---
 title: "Modern Web Development with Next.js"
 excerpt: "Learn the powerful features and modern web development practices of Next.js 13"
-date: "2024-03-15"
+date: {
+    day: 11,
+    month: "mar",
+    year: 2025
+}
 author: "Fatih İnan"
 category: "web"
-image: "/assets/images/blog/next.png"
-readTime: "8"
+image: "/assets/images/blog/next.webp"
+readTime: 8
 locale: "en"
 slug: "modern-web-development"
 tags: ["web", "development", "next", "next.js"]

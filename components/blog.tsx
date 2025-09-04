@@ -1,173 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { BlogCard } from '../components/ui/blog-card';
+import { BlogPostFrontmatter } from '@/lib/blog';
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  slug: {
-    tr: string;
-    en: string;
-  };
-  category: {
-    tr: string;
-    en: string;
-  };
-  date: {
-    day: string;
-    month: string;
-    year: string;
-  };
-  readTime: string;
-  image: string;
+export interface BlogProps {
+  posts: BlogPostFrontmatter[];
 }
 
-export function Blog() {
+export function Blog({ posts }: BlogProps) {
   const { t, i18n } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  const currentLang = i18n.language as 'tr' | 'en';
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const categories = [
     { value: 'all', label: t('blog.filters.all') },
-    { value: currentLang === 'tr' ? 'web-gelistirme' : 'web', label: t('blog.filters.web') },
-    { value: currentLang === 'tr' ? 'tasarim' : 'design', label: t('blog.filters.design') },
-    { value: currentLang === 'tr' ? 'kisisel' : 'personal', label: t('blog.filters.personal') }
+    { value: 'web', label: t('blog.filters.web') },
+    { value: 'design', label: t('blog.filters.design') },
+    { value: 'personal', label: t('blog.filters.personal') }
   ];
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: '1',
-      title: 'blog.posts.web.post1.title',
-      excerpt: 'blog.posts.web.post1.description',
-      slug: {
-        tr: 'modern-web-gelistirme',
-        en: 'modern-web-development'
-      },
-      category: {
-        tr: 'web-gelistirme',
-        en: 'web'
-      },
-      date: {
-        day: '15',
-        month: 'blog.posts.months.mar',
-        year: '2024'
-      },
-      readTime: `8`,
-      image: '/assets/images/default.svg'
-    },
-    {
-      id: '2',
-      title: 'blog.posts.web.post2.title',
-      excerpt: 'blog.posts.web.post2.description',
-      slug: {
-        tr: 'yazilimda-ilk-is-tecrubesi',
-        en: 'found-job-in-software-development'
-      },
-      category: {
-        tr: 'web-gelistirme',
-        en: 'web'
-      },
-      date: {
-        day: '3',
-        month: 'blog.posts.months.jun',
-        year: '2025'
-      },
-      readTime: `5`,
-      image: '/assets/images/default.svg'
-    },
-    {
-      id: '3',
-      title: 'blog.posts.design.post1.title',
-      excerpt: 'blog.posts.design.post1.description',
-      slug: {
-        tr: 'arayuz-tasarim-prensipleri',
-        en: 'ui-design-principles'
-      },
-      category: {
-        tr: 'tasarim',
-        en: 'design'
-      },
-      date: {
-        day: '9',
-        month: 'blog.posts.months.nov',
-        year: '2024'
-      },
-      readTime: '10',
-      image: '/assets/images/default.svg'
-    },
-    {
-      id: '4',
-      title: 'blog.posts.design.post2.title',
-      excerpt: 'blog.posts.design.post2.description',
-      slug: {
-        tr: 'kullanici-deneyimi',
-        en: 'user-experience'
-      },
-      category: {
-        tr: 'tasarim',
-        en: 'design'
-      },
-      date: {
-        day: '26',
-        month: 'blog.posts.months.aug',
-        year: '2025'
-      },
-      readTime: '12',
-      image: '/assets/images/default.svg'
-    },
-    {
-      id: '5',
-      title: 'blog.posts.personal.post1.title',
-      excerpt: 'blog.posts.personal.post1.description',
-      slug: {
-        tr: 'turkiyede-en-iyi-rotalar',
-        en: 'best-routes-in-turkey'
-      },
-      category: {
-        tr: 'kisisel',
-        en: 'personal'
-      },
-      date: {
-        day: '21',
-        month: 'blog.posts.months.aug',
-        year: '2025'
-      },
-      readTime: '4',
-      image: '/assets/images/default.svg'
-    },
-    {
-      id: '6',
-      title: 'blog.posts.personal.post2.title',
-      excerpt: 'blog.posts.personal.post2.description',
-      slug: {
-        tr: 'seyahat-ipuclari',
-        en: 'travel-tips'
-      },
-      category: {
-        tr: 'kisisel',
-        en: 'personal'
-      },
-      date: {
-        day: '8',
-        month: 'blog.posts.months.apr',
-        year: '2025'
-      },
-      readTime: '3',
-      image: '/assets/images/default.svg'
-    }
-  ];
+  // Mevcut dildeki postları filtrele
+  const currentLanguagePosts = posts.filter(post => post.locale === i18n.language);
 
+  // Kategoriye göre filtrele
   const filteredPosts = selectedCategory === 'all'
-    ? blogPosts
-    : blogPosts.filter(post => post.category[currentLang] === selectedCategory);
+    ? currentLanguagePosts
+    : currentLanguagePosts.filter(post => post.category === selectedCategory);
 
   const handleCategoryChange = (category: string) => {
     if (selectedCategory === category) {
@@ -243,6 +111,19 @@ export function Blog() {
           ))}
         </motion.div>
 
+        {/* Blog Posts Count */}
+        {isMounted && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center mb-8"
+          >
+            <p className="text-muted-foreground">
+              {filteredPosts.length} {t('blog.postsFound')}
+            </p>
+          </motion.div>
+        )}
+
         {/* Blog Posts Grid */}
         <AnimatePresence mode="wait">
           {isLoading ? (
@@ -254,49 +135,49 @@ export function Blog() {
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {Array.from({ length: 6 }).map((_, index) => (
-                <SkeletonCard key={index} />
+                <SkeletonCard key={`skeleton-${index}`} />
               ))}
             </motion.div>
           ) : (
-            <motion.div
-              key="posts"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {filteredPosts.map((post, index) => (
-                <motion.div
-                  key={post.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05, duration: 0.4 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <BlogCard post={post} />
-                </motion.div>
-              ))}
-            </motion.div>
+            isMounted && (
+              <motion.div
+                key="posts"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {filteredPosts.length > 0 ? (
+                  filteredPosts.map((post, index) => (
+                    <motion.div
+                      key={`post-${post.slug}-${post.locale}`}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.4 }}
+                      whileHover={{ y: -5 }}
+                    >
+                      <BlogCard post={post} />
+                    </motion.div>
+                  ))
+                ) : (
+                  <motion.div
+                    key="no-posts"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="col-span-full text-center py-12"
+                  >
+                    <h3 className="text-xl font-semibold text-muted-foreground mb-2">
+                      {t('blog.noPosts')}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {t('blog.noPostsDescription')}
+                    </p>
+                  </motion.div>
+                )}
+              </motion.div>
+            )
           )}
         </AnimatePresence>
-
-        {/* Load More Button */}
-        {!isLoading && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.4 }}
-            className="text-center mt-12"
-          >
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-primary text-primary hover:bg-primary/10"
-            >
-              {t('more')}
-            </Button>
-          </motion.div>
-        )}
       </div>
     </div>
   );

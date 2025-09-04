@@ -1,69 +1,85 @@
-import { notFound } from 'next/navigation'
-import { getBlogPost } from '@/lib/blog'
-import { getCategoryDisplayName } from '@/lib/blogUtils'
-import BlogPostClient from './BlogPostClient'
-import { Metadata } from 'next'
+// app/[lang]/blog/[...slug]/page.tsx
+import { notFound } from 'next/navigation';
+import { getBlogPost } from '@/lib/blog';
+import { getCategoryDisplayName } from '@/lib/blogUtils';
+import BlogPostClient from './BlogPostClient'; // Client side bileşeni
+import { Metadata } from 'next';
 
-interface BlogPostProps {
-  params: {
-    lang: string
-    slug: string[]
-  }
+interface BlogPostPageProps {
+  params: Promise<{
+    lang: string;
+    slug: string[];
+  }>;
 }
 
-// Server'da çalışacak olan ana sayfa bileşeni
-export default async function BlogPostPage({ params }: BlogPostProps) {
-  const { lang, slug } = params
-  const post = await getBlogPost(lang, slug)
+// Metadata generate function
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { lang, slug } = await params;
   
-  if (!post) {
-    notFound()
+  if (!slug || slug.length < 2) {
+    return {
+      title: 'Blog Post Not Found',
+    };
   }
-  
-  const { frontmatter, content } = post
-  const displayName = getCategoryDisplayName(frontmatter.category)
 
-  return (
-    <BlogPostClient 
-      initialPost={{ frontmatter, content }}
-      initialDisplayName={displayName}
-      lang={lang}
-      slug={slug.join('/')}
-    />
-  )
-}
-
-// SEO için metadata generate et (server-side)
-export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
-  const { lang, slug } = params
-  const post = await getBlogPost(lang, slug)
+  const combinedSlug = slug.join('/');
+  const post = await getBlogPost(lang, combinedSlug);
 
   if (!post) {
     return {
-      title: 'Blog yazısı bulunamadı',
-    }
+      title: 'Blog Post Not Found',
+    };
   }
 
-  const { frontmatter } = post
+  const { frontmatter } = post;
 
   return {
-    title: `${frontmatter.title} | Fatih İnan Blog`,
+    title: `${frontmatter.title} - Fatih İnan Blog`,
     description: frontmatter.excerpt,
+    keywords: frontmatter.tags?.join(', '),
     openGraph: {
       title: frontmatter.title,
       description: frontmatter.excerpt,
       type: 'article',
-      publishedTime: frontmatter.date,
-      authors: [frontmatter.author],
-      images: frontmatter.image ? [
-        { url: frontmatter.image, alt: frontmatter.title },
-      ] : [],
+      locale: lang === 'tr' ? 'tr_TR' : 'en_US',
+      images: frontmatter.image ? [frontmatter.image] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: frontmatter.title,
       description: frontmatter.excerpt,
-      images: frontmatter.image ? [frontmatter.image] : [],
+      images: frontmatter.image ? [frontmatter.image] : undefined,
     },
+  };
+}
+
+// Sunucuda çalışır
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { lang, slug } = await params;
+  
+  if (!slug || slug.length < 2) {
+    notFound();
   }
+
+  const combinedSlug = slug.join('/');
+  const post = await getBlogPost(lang, combinedSlug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const { frontmatter, content } = post;
+  const displayName = getCategoryDisplayName(frontmatter.category);
+  const category = slug[0]; // İlk slug kategori
+  const postSlug = slug[1]; // İkinci slug post
+
+  return (
+    <BlogPostClient
+      initialPost={{ frontmatter, content }}
+      initialDisplayName={displayName}
+      lang={lang}
+      slug={postSlug}
+      category={category}
+    />
+  );
 }

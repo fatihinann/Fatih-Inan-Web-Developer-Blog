@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
+import { Card, CardContent, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
 import { ExternalLink, Camera, MapPin, Github, Headphones, Film } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
 
 interface Hobby {
   id: string;
@@ -36,7 +37,7 @@ export function Hobbies() {
       title: 'hobbies.camping.title',
       description: 'hobbies.camping.description',
       category: 'hobbies.categories.nature',
-      image: '/assets/images/default.svg',
+      image: '/assets/images/hobbies/camping.webp',
       // location: 'Karadeniz Bölgesi',
     },
     {
@@ -44,7 +45,7 @@ export function Hobbies() {
       title: 'hobbies.motorcycle.title',
       description: 'hobbies.motorcycle.description',
       category: 'hobbies.categories.adventure',
-      image: '/assets/images/default.svg',
+      image: '/assets/images/hobbies/motor.webp',
       // location: 'Türkiye Geneli',
       // socialLink: {
       //   platform: 'Strava',
@@ -57,7 +58,7 @@ export function Hobbies() {
       title: 'hobbies.films&Music.title',
       description: 'hobbies.films&Music.description',
       category: 'hobbies.categories.culture',
-      image: '/assets/images/default.svg',
+      image: '/assets/images/hobbies/forest.webp',
       socialLink: {
         platform: 'Letterboxd',
         url: 'https://letterboxd.com/fatihinan7/',
@@ -74,7 +75,7 @@ export function Hobbies() {
       title: 'hobbies.sports.title',
       description: 'hobbies.sports.description',
       category: 'hobbies.categories.sports',
-      image: '/assets/images/default.svg',
+      image: '/assets/images/hobbies/calisthenics.webp',
       // location: 'Çeşitli Lokasyonlar'
     },
     {
@@ -82,16 +83,15 @@ export function Hobbies() {
       title: 'hobbies.photography.title',
       description: 'hobbies.photography.description',
       category: 'hobbies.categories.photography',
-      image: '/assets/images/default.svg',
+      image: '/assets/images/hobbies/photo.webp',
       // location: 'İstanbul ve Çevresi',
-
     },
     {
       id: '6',
       title: 'hobbies.design.title',
       description: 'hobbies.design.description',
       category: 'hobbies.categories.design',
-      image: '/assets/images/default.svg',
+      image: '/assets/images/hobbies/design.webp',
       // location: 'İstanbul'
     }
   ];
@@ -200,18 +200,17 @@ export function Hobbies() {
                   {/* Image Section */}
                   <div className="relative w-full h-64 bg-gradient-to-br from-secondary to-accent overflow-hidden">
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center"
+                      className="relative w-full h-full"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="text-6xl opacity-60">
-                        {hobby.category === 'hobbies.categories.nature' && '🏕️'}
-                        {hobby.category === 'hobbies.categories.adventure' && '🏍️'}
-                        {hobby.category === 'hobbies.categories.photography' && '📸'}
-                        {hobby.category === 'hobbies.categories.culture' && '🎬'}
-                        {hobby.category === 'hobbies.categories.sports' && '🏋️'}
-                        {hobby.category === 'hobbies.categories.design' && '🎨'}
-                      </div>
+                      <Image
+                        src={hobby.image}
+                        alt={t(hobby.title)}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                     </motion.div>
 
                     {/* Overlay on hover */}

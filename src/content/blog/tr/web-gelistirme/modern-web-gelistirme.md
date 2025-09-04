@@ -1,11 +1,15 @@
 ---
 title: "Next.js ile Modern Web Geliştirme"
 excerpt: "Next.js 13'ün güçlü özelliklerini ve modern web geliştirme pratiklerini öğrenin"
-date: "2024-03-15"
+date: {
+    day: 11,
+    month: "haz",
+    year: 2025
+}
 author: "Fatih İnan"
 category: "web"
-image: "/assets/images/blog/next.png"
-readTime: "8"
+image: "/assets/images/blog/next.webp"
+readTime: 8
 locale: "tr"
 slug: "modern-web-gelistirme"
 tags: ["web", "development", "next", "next.js"]

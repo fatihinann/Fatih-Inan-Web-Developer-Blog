@@ -52,74 +52,25 @@
       "design": "Tasarım",
       "personal": "Kişisel Yazılar"
     },
-    "urls": {
-      "categories": {
-        "web": "web-gelistirme",
-        "design": "tasarim",
-        "personal": "kisisel"
-      },
-      "slugs": {
-        "web": {
-          "post1": "typescript-modern-web",
-          "post2": "yazilimda-ilk-isinizi-bulmak"
-        },
-        "design": {
-          "post1": "minimalist-tasarim",
-          "post2": "renk-teorisi"
-        },
-        "personal": {
-          "post1": "kamp-ve-kodlama",
-          "post2": "motosiklet-yaraticilik"
-        }
-      }
-    },
-    "posts": {
-      "web": {
-        "post1": {
-          "title": "Modern Web Uygulamalarında TypeScript Kullanımı",
-          "description": "TypeScript ile daha güvenli ve sürdürülebilir web uygulamaları geliştirmenin yolları ve en iyi pratikler."
-        },
-        "post2": {
-          "title": "Kısır Döngüyü Sonlandırmak: Yazılım Yolculuğunda İlerlemenin Yolları",
-          "description": "Benimde şu an içinde bulunduğum o durum. Kuzenime site danışman sitesi yaparak portfolyomu geliştirmek istiyorum."
-        }
-      },
-      "design": {
-        "post1": {
-          "title": "Minimalist Tasarım Prensipleri",
-          "description": "Daha temiz ve etkili kullanıcı arayüzleri oluşturmak için minimalist tasarım yaklaşımları."
-        },
-        "post2": {
-          "title": "Renk Teorisi ve Web Tasarımı",
-          "description": "Web tasarımında renk seçiminin kullanıcı deneyimi üzerindeki etkisi ve pratik uygulamalar."
-        }
-      },
-      "personal": {
-        "post1": {
-          "title": "Kamp Yaşantısından Kod Yazmaya",
-          "description": "Doğayla iç içe geçirdiğim zamanların yazılım geliştirme sürecime olan etkilerini keşfettikçe..."
-        },
-        "post2": {
-          "title": "Motosiklet Yolculukları ve Yaratıcılık",
-          "description": "Yolda geçen saatler ve keşfedilen yeni yerler, yaratıcı düşünce sürecini nasıl besliyor?"
-        }
-      },
-      "readMore": "Devamını oku",
-      "min": "dk",
-      "months": {
-        "jan": "Ocak",
-        "feb": "Şubat",
-        "mar": "Mart",
-        "apr": "Nisan",
-        "may": "Mayıs",
-        "jun": "Haziran",
-        "jul": "Temmuz",
-        "aug": "Ağustos",
-        "sep": "Eylül",
-        "oct": "Ekim",
-        "nov": "Kasım",
-        "dec": "Aralık"
-      }
+    "readMore": "Devamını oku",
+    "min": "dk",
+    "noPosts" : "Erişilebilir bir yazı bulunmamaktadır.",
+    "noPostsDescription": "Bu kategoride şu anda mevcut yazı bulunmamaktadır. Lütfen daha sonra tekrar kontrol edin veya diğer kategorileri keşfedin.",
+    "postsFound": "yazı bulundu",
+    "backToBlog": "Blog'a Dön",
+    "months": {
+      "jan": "Ocak",
+      "feb": "Şubat",
+      "mar": "Mart",
+      "apr": "Nisan",
+      "may": "Mayıs",
+      "jun": "Haziran",
+      "jul": "Temmuz",
+      "aug": "Ağustos",
+      "sep": "Eylül",
+      "oct": "Ekim",
+      "nov": "Kasım",
+      "dec": "Aralık"
     }
   },
   "hobbies": {
@@ -173,7 +124,6 @@
       "messagePlaceholder": "Mesajınızı buraya yazın...",
       "send": "Mesaj Gönder",
       "sending": "Gönderiliyor..."
-
     },
     "contactInfo": {
       "title": "İletişim Bilgileri",

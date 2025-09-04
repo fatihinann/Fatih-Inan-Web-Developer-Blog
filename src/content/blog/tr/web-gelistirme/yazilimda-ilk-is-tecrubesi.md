@@ -1,12 +1,18 @@
 ---
 title: "Yazılımda İlerleyememe ve İş Bulamama Döngüsünü Kırma Çabam"
 excerpt: "Deneyimsizlik ve iş bulamama döngüsünde sıkışmış biri olarak, küçük projelerle çıkış arayışımı paylaşıyorum."
-date: "2025-04-02"
+date: {
+    day: 17,
+    month: "şub",
+    year: 2025
+}
 author: "Fatih İnan"
 category: "web"
-image: "/assets/images/blog/job.png"
-readTime: "6"
-tags: ["career", "software", "learning", "portfolio"]
+image: "/assets/images/blog/job.webp"
+readTime: 6
+locale: "tr"
+slug: yazilimda-ilk-is-tecrubesi
+tags: ["kariyer", "yazilim", "ogrenme", "portfolyo"]
 ---
 
 Bizzat kendimin de içinde bulunduğu bir durumdan bahsetmek istiyorum:  

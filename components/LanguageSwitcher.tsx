@@ -25,10 +25,10 @@ export function LanguageSwitcher() {
   // Kategori ve slug (dosya adı) eşleştirme haritaları
   const categoryMap: Record<string, string> = {
     'web-gelistirme': 'web',
-    'tasarim': 'design',
-    'kisisel': 'personal',
     'web': 'web-gelistirme',
+    'tasarim': 'design',
     'design': 'tasarim',
+    'kisisel': 'personal',
     'personal': 'kisisel',
   };
 
@@ -55,27 +55,24 @@ export function LanguageSwitcher() {
       setIsOpen(false);
       return;
     }
+
     const segments = pathname.split('/').filter(Boolean);
 
-    // Blog sayfası URL'si mi kontrol et
+    // If we are on a blog post page (e.g., /tr/blog/web-gelistirme/modern-web-gelistirme)
     if (segments.length >= 3 && segments[1] === 'blog') {
       const currentCategory = segments[2];
       const currentSlug = segments[3];
-      
-      // Kategori ve slug'ı çevir
+
+      // Attempt to translate the category and slug; use original if no translation exists
       segments[2] = categoryMap[currentCategory] || currentCategory;
       segments[3] = slugMap[currentSlug] || currentSlug;
     }
 
-    // Dil segmentini güncelle
-    if (segments.length > 0 && (segments[0] === 'tr' || segments[0] === 'en')) {
-      segments[0] = lng;
-    } else {
-      segments.unshift(lng);
-    }
+    // Update the language segment at the beginning of the path
+    segments[0] = lng;
 
     const newPath = '/' + segments.join('/');
-    
+
     i18n.changeLanguage(lng);
     localStorage.setItem(LANGUAGE_KEY, lng);
     router.push(newPath);
@@ -107,9 +104,8 @@ export function LanguageSwitcher() {
               <button
                 key={language.code}
                 onClick={() => changeLanguage(language.code)}
-                className={`w-full px-4 py-2 text-left text-sm hover:bg-amber-50 transition-colors flex items-center space-x-2 ${
-                  i18n.language === language.code ? 'bg-amber-100 text-amber-800' : 'text-slate-700'
-                }`}
+                className={`w-full px-4 py-2 text-left text-sm hover:bg-amber-50 transition-colors flex items-center space-x-2 ${i18n.language === language.code ? 'bg-amber-100 text-amber-800' : 'text-slate-700'
+                  }`}
               >
                 <span className="text-lg">{language.flag}</span>
                 <span>{language.name}</span>

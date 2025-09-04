@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Avatar, AvatarFallback } from '../components/ui/avatar';
-import profile from '../public/assets/images/fatih.jpg'
+import profile from '../public/assets/images/fatih.webp'
 import Image from "next/image";
 import { useTranslation } from 'react-i18next';
 

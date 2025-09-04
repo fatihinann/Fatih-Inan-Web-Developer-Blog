@@ -52,75 +52,13 @@
       "design": "Design",
       "personal": "Personal Articles"
     },
-    "urls": {
-      "categories": {
-        "web": "web-development",
-        "design": "design",
-        "personal": "personal"
-      },
-      "slugs": {
-        "web": {
-          "post1": "typescript-modern-web",
-          "post2": "found-job-in-software-development"
-        },
-        "design": {
-          "post1": "minimalist-design",
-          "post2": "color-theory"
-        },
-        "personal": {
-          "post1": "camping-and-coding",
-          "post2": "motorcycle-creativity"
-        }
-      }
-    },
-    "posts": {
-      "web": {
-        "post1": {
-          "title": "Using TypeScript in Modern Web Applications",
-          "description": "Ways and best practices to develop safer and more sustainable web applications with TypeScript."
-        },
-        "post2": {
-          "title": "Breaking the Vicious Cycle: Ways to Progress on the Software Journey",
-          "description": "That's the situation I'm in right now. I want to build my portfolio by creating a website consultant website for my cousin."
-        }
-      },
-      "design": {
-        "post1": {
-          "title": "Minimalist Design Principles",
-          "description": "Minimalist design approaches to create cleaner and more effective user interfaces."
-        },
-        "post2": {
-          "title": "Color Theory and Web Design",
-          "description": "The impact of color selection on user experience in web design and practical applications."
-        }
-      },
-      "personal": {
-        "post1": {
-          "title": "From Camp Life to Coding",
-          "description": "As I discover the effects of the time I spent in nature on my software development process..."
-        },
-        "post2": {
-          "title": "Motorcycle Journeys and Creativity",
-          "description": "How do hours spent on the road and discovering new places nurture the creative thought process?"
-        }
-      },
-      "readMore": "Read more",
-      "min": "min",
-      "months": {
-        "jan": "January",
-        "feb": "February",
-        "mar": "March",
-        "apr": "April",
-        "may": "May",
-        "jun": "June",
-        "jul": "July",
-        "aug": "August",
-        "sep": "September",
-        "oct": "October",
-        "nov": "November",
-        "dec": "December"
-      }
-    }
+    "readMore": "Read More",
+    "min": "min",
+    "noPosts" : "No posts available.",
+    "noPostsDescription": "There are no posts available in this category at the moment. Please check back later or explore other categories.",
+    "postsFound": "posts found",
+    "backToBlog": "Back to Blog"
+  
   },
   "hobbies": {
     "title": "Hobbies",
