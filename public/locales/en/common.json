@@ -14,7 +14,7 @@
     "contact": "Contact"
   },
   "footer": {
-    "description": "Hello, I'm Fatih İnan. Software, web development, camping, motorcycle, music, sports, guitar, photography and more. 2002 z generation",
+    "description": "Hello, I'm Fatih İnan. I'm a software developer/web developer with a passion for motorcycles. I've been writing about technology, motorcycles, and life experiences since 2002. On this blog, I continue to guide those new to the motorcycle world, spread the culture of safe riding, and share my passion for two wheels.",
     "pages": "Pages",
     "contact": "Contact",
     "jobTitle": "Web Developer",
@@ -50,7 +50,10 @@
       "all": "All",
       "web": "Web Development",
       "design": "Design",
-      "personal": "Personal Articles"
+      "personal": "Personal Articles",
+      "footer": {
+        "exploreButton": "See More Articles"
+      }
     },
     "readMore": "Read More",
     "min": "min",

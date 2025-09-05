@@ -43,12 +43,12 @@ const MarkdownComponents = {
   ol: ({ children }: any) => (<ol className="list-decimal list-inside text-muted-foreground mb-4 space-y-2 ml-4">{children}</ol>),
   li: ({ children }: any) => (<li className="text-muted-foreground text-lg">{children}</li>),
   strong: ({ children }: any) => (<strong className="text-foreground font-semibold">{children}</strong>),
-  blockquote: ({ children }: any) => (<blockquote className="border-l-4 border-primary pl-6 italic bg-secondary/50 p-4 rounded-r-lg my-6 text-foreground">{children}</blockquote>),
+  blockquote: ({ children }: any) => (<blockquote className="border-l-4 border-primary pl-6 bg-secondary/50 p-4 rounded-r-lg my-6 text-foreground">{children}</blockquote>),
   code: ({ children, className }: any) => {
     if (!className) {
       return (<code className="bg-secondary px-2 py-1 rounded text-sm text-primary font-mono">{children}</code>);
     }
-    return (<div className="my-6"><pre className="bg-secondary p-4 rounded-lg overflow-x-auto border border-border"><code className="text-sm text-foreground font-mono">{children}</code></pre></div>);
+    return (<div className="my-6"><pre className="bg-secondary p-2 rounded-lg overflow-x-auto border border-border"><code className="text-md text-foreground font-mono">{children}</code></pre></div>);
   },
   table: ({ children }: any) => (<div className="overflow-x-auto my-6"><table className="w-full border-collapse border border-border rounded-lg">{children}</table></div>),
   th: ({ children }: any) => (<th className="border border-border p-3 bg-secondary text-left font-semibold text-foreground">{children}</th>),
@@ -235,37 +235,46 @@ export default function BlogPostClient({ initialPost, initialDisplayName, lang, 
           </div>
 
           <div className="mt-16 pt-8 border-t border-border">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-serif text-foreground mb-4">
-                {t('blog.footer.title')}
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                {t('blog.footer.description')}
+            <div className="text-center bg-secondary/50 rounded-xl p-6 flex flex-col items-center justify-center items-center gap-2 ">
+
+              <div className="flex flex-wrap sm:flex-row items-center gap-6 text-foreground">
+                <div className="flex items-center">
+                  <User className="w-4 h-4 mr-2" />
+                  <span>{frontmatter.author}</span>
+                </div>
+                <div className="flex items-center">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  <time dateTime={`${frontmatter.date.year}-${frontmatter.date.month}-${frontmatter.date.day}`}>
+                    {formattedDate}
+                  </time>
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>{frontmatter.readTime} {t('blog.min')}</span>
+                </div>
+              </div>
+              <p className="text-muted-foreground max-w-2xl">
+                {frontmatter.title}
               </p>
+              <p className="text-muted-foreground max-w-2xl">
+                {frontmatter.excerpt}
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 mb-2">
+                {frontmatter.tags.map((tag: string) => (
+                  <Badge
+                    key={tag}
+                    variant="outline"
+                    className="text-xs"
+                  >
+                    #{tag}
+                  </Badge>
+                ))}
+              </div>
               <Link href={`/${lang}/blog`}>
                 <Button className="bg-primary hover:bg-primary/90">
                   {t('blog.footer.exploreButton')}
                 </Button>
               </Link>
-            </div>
-
-            <div className="bg-secondary/50 rounded-xl p-6 border border-border">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                  <User className="w-8 h-8 text-primary" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-1">
-                    {frontmatter.author}
-                  </h4>
-                  <p className="text-muted-foreground text-sm">
-                    {t('blog.author.job')}
-                  </p>
-                  <p className="text-muted-foreground text-sm mt-2">
-                    {t('blog.author.bio')}
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </article>

@@ -5,6 +5,10 @@ const nextConfig = {
     mdxRs: true,
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
+  },
+  swcMinify: true
 };
 
 module.exports = nextConfig;

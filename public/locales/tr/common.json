@@ -14,7 +14,7 @@
     "contact": "İletişim"
   },
   "footer": {
-    "description": "Merhaba, ben Fatih İnan. Yazılım, web geliştirme, kamp, motor, müzik, spor, gitar, fotoğraf falan. 2002 z generation",
+    "description": "Merhaba, ben Fatih İnan. Motor tutkunu bir yazılımcı/web geliştiriciyim. 2002'den beri teknoloji, motosiklet ve yaşam deneyimleri üzerine yazıyorum. Bu blogda motor dünyasına yeni başlayanlar için rehberlik yapmaya, güvenli sürüş kültürünü yaymaya ve iki tekerlek tutkusunu paylaşmaya devam ediyorum.",
     "pages": "Sayfalar",
     "contact": "İletişim",
     "jobTitle": "Web Geliştirici",
@@ -52,9 +52,12 @@
       "design": "Tasarım",
       "personal": "Kişisel Yazılar"
     },
+    "footer": {
+      "exploreButton": "Diğer Yazılarım"
+    },
     "readMore": "Devamını oku",
     "min": "dk",
-    "noPosts" : "Erişilebilir bir yazı bulunmamaktadır.",
+    "noPosts": "Erişilebilir bir yazı bulunmamaktadır.",
     "noPostsDescription": "Bu kategoride şu anda mevcut yazı bulunmamaktadır. Lütfen daha sonra tekrar kontrol edin veya diğer kategorileri keşfedin.",
     "postsFound": "yazı bulundu",
     "backToBlog": "Blog'a Dön",
