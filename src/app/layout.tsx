@@ -3,6 +3,7 @@ import "./[lang]/css/globals.css";
 import Providers from './providers'
 import { Header } from "@/../components/ui/header";
 import { Footer } from "@/../components/footer";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
     title: {
@@ -35,6 +36,7 @@ export default function RootLayout({
                 <Providers>
                     <Header />
                     <main className="min-h-screen">{children}</main>
+                    <SpeedInsights />
                     <Footer />
                 </Providers>
 
