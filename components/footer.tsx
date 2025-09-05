@@ -1,26 +1,34 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Github, Instagram, Mail, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'next/navigation';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { t } = useTranslation();
+  const params = useParams();
+  const pathname = usePathname();
+  const lang = params?.lang || 'tr';
 
   const navigation = [
-    { name: t('navigation.about'), href: '/about' },
-    { name: t('navigation.blog'), href: '/blog' },
-    { name: t('navigation.hobbies'), href: '/hobbies' },
-    { name: t('navigation.contact'), href: '/contact' }
+    { name: t('navigation.about'), href: `/${lang}/about` },
+    { name: t('navigation.blog'), href: `/${lang}/blog` },
+    { name: t('navigation.hobbies'), href: `/${lang}/hobbies` },
+    { name: t('navigation.contact'), href: `/${lang}/contact` }
   ];
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/fatihinann', label: 'GitHub' },
     { icon: Instagram, href: 'https://instagram.com/fatihinann7', label: 'Instagram' },
-    { icon: Mail, href: 'mailto:fatih@fatihinan3437@gmail.com', label: 'Email' },
-    { icon: ExternalLink, href: 'https://letterboxd.com/fatihinan7', label: 'Letterboxd' }
+    { icon: Mail, href: 'mailto:fatihinan3437@gmail.com', label: 'Email' }
   ];
+
+  const isActiveLink = (href:string):boolean => {
+    return pathname === href;
+  };
 
   return (
     <footer className="bg-background">
@@ -28,7 +36,11 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-serif text-primary mb-4">Fatih İnan</h3>
+            <Link href={`/${lang}`}>
+              <h3 className="text-2xl font-serif text-primary mb-4 hover:opacity-80 transition-opacity cursor-pointer">
+                Fatih İnan
+              </h3>
+            </Link>
             <p className="text-foreground mb-4 max-w-md">
               {t('footer.description')}
             </p>
@@ -57,7 +69,11 @@ export const Footer = () => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-foreground hover:text-primary transition-colors"
+                      className={`transition-colors ${
+                        isActiveLink(item.href)
+                          ? 'text-primary font-medium'
+                          : 'text-foreground hover:text-primary'
+                      }`}
                     >
                       {item.name}
                     </Link>
@@ -73,8 +89,8 @@ export const Footer = () => {
                 <p>{t('footer.jobTitle')}</p>
                 <p>{t('footer.location')}</p>
                 <a
-                  href="mailto:fatih@fatihinan3437@gmail.com"
-                  className="hover:text-primary transition-colors"
+                  href="mailto:fatihinan3437@gmail.com"
+                  className="hover:text-primary transition-colors block"
                 >
                   fatihinan3437@gmail.com
                 </a>

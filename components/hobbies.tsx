@@ -222,7 +222,7 @@ export function Hobbies() {
 
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-card/90 text-primary border-0">
+                      <Badge className="bg-card/90 text-primary bg-black/70 border-0">
                         {t(hobby.category)}
                       </Badge>
                     </div>

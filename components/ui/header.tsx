@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Instagram, Film, Menu, X } from 'lucide-react';
+import { Github, Instagram, Film, Menu, X, Mail } from 'lucide-react';
 import { Button } from './button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -29,8 +29,8 @@ export function Header() {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/fatihinann', label: 'GitHub' },
-    { icon: Instagram, href: 'https://www.instagram.com/fatihinann7/#', label: 'Instagram' },
-    { icon: Film, href: 'https://letterboxd.com/fatihinan7/', label: 'Letterboxd' }
+    { icon: Mail, href: 'mailto:fatihinan3437@gmail.com', label: 'Email' },
+    { icon: Instagram, href: 'https://www.instagram.com/fatihinann7/#', label: 'Instagram' }
   ];
 
   const closeMobileMenu = () => {

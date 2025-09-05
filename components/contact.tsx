@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Mail, Phone, MapPin, Send, Github, Instagram, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Instagram, Headphones, Film } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export function Contact() {
@@ -66,10 +66,16 @@ export function Contact() {
       username: '@fatihinann7'
     },
     {
-      icon: ExternalLink,
+      icon: Film,
       platform: 'Letterboxd',
       url: 'https://letterboxd.com/fatihinan7/',
       username: '@fatihinan7'
+    },
+    {
+      icon: Headphones,
+      platform: 'Spotify',
+      url: 'https://open.spotify.com/user/9bzqbbvmwejng66cjprp9fqvb',
+      username: '@fatihinann7'
     }
   ];
 

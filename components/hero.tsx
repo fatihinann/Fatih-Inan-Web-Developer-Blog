@@ -6,11 +6,14 @@ import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { useTypewriter } from '../src/hooks/useTypewriter';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'next/navigation';
 
 export function Hero() {
   const { t } = useTranslation();
   const fullText = t('hero.description');
   const { displayText } = useTypewriter(fullText, 50);
+  const params = useParams();
+  const lang = params?.lang || 'tr';
 
   return (
     <div className="hero-theme relative min-h-screen flex items-center justify-center overflow-hidden" style={{
@@ -60,7 +63,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.4 }}
           >
-            <Link href="/blog">
+            <Link href={`/${lang}/blog`}>
               <Button
                 size="lg"
                 className="bg-night hover:bg-slate-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -72,31 +75,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Floating elements for visual interest */}
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 rounded-full bg-secondary opacity-30"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-16 h-16 rounded-full bg-accent opacity-40"
-          animate={{
-            y: [0, 20, 0],
-            rotate: [0, -180, -360],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+
       </div>
 
       {/* Scroll indicator */}
