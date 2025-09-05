@@ -8,7 +8,7 @@ async function getBlogPost(slug: string, locale: string = 'tr') {
   try {
     // Gelen URL'den kategori ve slug'ı al
     const [urlCategory, urlSlug] = slug.split('/')
-
+    
     // Doğru dosya konumunu bul (MD dosyaları dil klasörlerinde)
     const mdFilePath = join(process.cwd(), 'src/content/blog', locale, urlCategory, `${urlSlug}.md`)
     
@@ -35,15 +35,22 @@ async function getBlogPost(slug: string, locale: string = 'tr') {
   }
 }
 
+// ✅ Async params ile düzeltilmiş versiyon
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string[] } }
+  context: {
+    params: Promise<{ lang: string; slug: string[] }>
+  }
 ) {
+  // Params'ı await et
+  const { lang, slug } = await context.params
+  
+  // URL'den locale al, yoksa params'tan lang kullan
   const searchParams = request.nextUrl.searchParams
-  const locale = searchParams.get('locale') || 'tr'
-  const slug = params.slug.join('/')
+  const locale = searchParams.get('locale') || lang || 'tr'
+  const slugPath = slug.join('/')
 
-  const post = await getBlogPost(slug, locale)
+  const post = await getBlogPost(slugPath, locale)
 
   if (!post) {
     return new NextResponse('Not Found', { status: 404 })
