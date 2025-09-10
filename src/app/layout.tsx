@@ -35,7 +35,7 @@ export default function RootLayout({
             <body>
                 <Providers>
                     <Header />
-                    <main className="min-h-screen">{children}</main>
+                    <main>{children}</main>
                     <SpeedInsights />
                     <Footer />
                 </Providers>

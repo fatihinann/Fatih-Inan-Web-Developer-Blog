@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -81,7 +82,7 @@ export function Contact() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-theme">
+    <div className="min-h-inline bg-gradient-theme">
       <div className="container mx-auto px-4 pt-20 pb-8">
         {/* Header */}
         <motion.div
@@ -101,7 +102,7 @@ export function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
@@ -182,7 +183,6 @@ export function Contact() {
                 </form>
               </CardContent>
             </Card>
-            {/* Nature Illustration */}
             <Card className="border-border bg-gradient-to-br from-secondary to-accent">
               <CardContent className="p-8 text-center space-y-4">
                 <p className="text-muted-foreground italic">
@@ -191,7 +191,7 @@ export function Contact() {
                 <div className="text-8xl">🌲</div>
               </CardContent>
             </Card>
-          </motion.div>
+          </motion.div> */}
 
           {/* Contact Info and Illustration */}
           <motion.div
@@ -200,8 +200,6 @@ export function Contact() {
             transition={{ delay: 0.3, duration: 0.4 }}
             className="space-y-8"
           >
-
-
             {/* Contact Information */}
             <Card className="border-border">
               <CardHeader>
@@ -235,6 +233,14 @@ export function Contact() {
               </CardContent>
             </Card>
 
+
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="space-y-8"
+          >
             {/* Social Media Links */}
             <Card className="border-border">
               <CardHeader>
@@ -271,6 +277,7 @@ export function Contact() {
               </CardContent>
             </Card>
           </motion.div>
+
         </div>
       </div>
     </div>
