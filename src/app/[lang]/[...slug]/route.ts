@@ -35,7 +35,6 @@ async function getBlogPost(slug: string, locale: string = 'tr') {
   }
 }
 
-// ✅ Async params ile düzeltilmiş versiyon
 export async function GET(
   request: NextRequest,
   context: {
