@@ -14,7 +14,7 @@
     "contact": "İletişim"
   },
   "footer": {
-    "description": "Merhaba, ben Fatih İnan. Motor tutkunu bir yazılımcı/web geliştiriciyim. 2002'den beri teknoloji, motosiklet ve yaşam deneyimleri üzerine yazıyorum. Bu blogda motor dünyasına yeni başlayanlar için rehberlik yapmaya, güvenli sürüş kültürünü yaymaya ve iki tekerlek tutkusunu paylaşmaya devam ediyorum.",
+    "description": "Merhaba, ben Fatih İnan. 24 yaşında bir Web geliştiriciyim. Bu sitede çalışmalarımı ve düşüncelerimi paylaşmaktayım sadece bir portfolyo olarak değil blog sitem olarak da kullanmayı amaçlıyorum.",
     "pages": "Sayfalar",
     "contact": "İletişim",
     "jobTitle": "Web Geliştirici",
@@ -26,7 +26,7 @@
     "title": "Hakkımda",
     "hello": "Merhaba! Ben Fatih İnan",
     "description": {
-      "part1": "23 yaşındayım. Çocukluğumdan beri bilgisayarlara meraklıyım; liseden itibaren bilişim ve web tasarımıyla ilgileniyorum. 11. sınıfta ASP.NET, 12. sınıfta PHP öğrendim ve ardından Eskişehir Osmangazi Üniversitesi’nde Bilgisayar Programcılığı eğitimi aldım. Yaklaşık 2 yıl POS uzmanı olarak çalıştım ve bu süreç bana güzel bir deneyim kazandırdı.",
+      "part1": "24 yaşındayım. Çocukluğumdan beri bilgisayarlara meraklıyım; liseden itibaren bilişim ve web tasarımıyla ilgileniyorum. 11. sınıfta ASP.NET, 12. sınıfta PHP öğrendim ve ardından Eskişehir Osmangazi Üniversitesi’nde Bilgisayar Programcılığı eğitimi aldım. Yaklaşık 2 yıl POS uzmanı olarak çalıştım ve bu süreç bana güzel bir deneyim kazandırdı.",
       "part2": "Teknoloji hayatımın büyük bir parçası, ama sadece bu değil. Motor, gitar, fotoğraf makinesi, kamp ekipmanları gibi tutkularım var. Rock/Metal konserlerine gidiyorum; ama diğer tutkularımı gerçekleştirmek için maddi kaynak gerektiği için iş hayatına geri dönmek artık önceliğim.",
       "part3": "Daldan dala atlamak yerine, sağlam bir başlangıç yapabilmek için bu blog sitesini oluşturdum. Öğrendiklerimi uygulayarak kendimi geliştirmeye devam ediyorum ve uzun vadede e-ticaret projeleriyle hem deneyim kazanmayı hem de tutkularımı gerçekleştirebileceğim gelirler elde etmeyi hedefliyorum."
     },
@@ -138,6 +138,26 @@
     }
   },
 
+  "portfolio": {
+    "title": "Seçkin Çalışmalar",
+    "subtitle": "Performans ve estetiğin harmanlandığı projelerden oluşan bir koleksiyon.",
+    "viewProject": "Projeyi Görüntüle",
+    "exploreMore": "Tüm Kodları İncele",
+    "comingSoon": "Daha fazla proje yakında...",
+    "projects": {
+      "gunnurTeksen": {
+        "title": "Günnur Teksen - Klinik Psikolog",
+        "description": "Sakin ve doğadan ilham alan bir tasarıma sahip profesyonel terapist portfolyo sitesi. Next.js, Tailwind CSS ve Framer Motion ile oluşturuldu.",
+        "badge": "Doğadan ilham alan profesyonel tasarım",
+        "features": {
+          "therapy1": "Bireysel Terapi",
+          "therapy2": "Şema Terapi",
+          "education": "Eğitim Bilgileri",
+          "certificates": "Sertifikalar"
+        }
+      }
+    }
+  },
   "error": {
     "title": "Bir Hata Oluştu",
     "description": "Üzgünüz, beklenmeyen bir hata oluştu. Lütfen sayfayı yenilemeyi deneyin.",

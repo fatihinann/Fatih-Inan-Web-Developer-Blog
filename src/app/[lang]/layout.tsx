@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./css/globals.css";
-import Providers from '../providers'
-import { Header } from "@/../components/ui/header";
-import { Footer } from "@/../components/footer";
 
 export const metadata: Metadata = {
   title: {

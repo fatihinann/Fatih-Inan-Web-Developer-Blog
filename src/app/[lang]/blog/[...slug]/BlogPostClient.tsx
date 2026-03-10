@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -13,53 +12,86 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import { useTranslation } from 'react-i18next'
 import { getMonthNumber } from '@/lib/blogUtils'
-import { useEffect, useState } from 'react';
+import type { ComponentPropsWithoutRef } from 'react'
+
+type MdxComponentProps<T extends keyof React.JSX.IntrinsicElements> = ComponentPropsWithoutRef<T> & { children?: React.ReactNode }
+
+interface Frontmatter {
+  title: string;
+  excerpt: string;
+  date: {
+    year: number;
+    month: string;
+    day: number;
+  };
+  author: string;
+  category?: string;
+  image?: string;
+  readTime: number;
+  locale: string;
+  slug: string;
+  tags: string[];
+}
 
 // Markdown bileşenleri aynı kalıyor
 const MarkdownComponents = {
-  // `p` bileşeni, ana metin için normal kalmalı
-  p: ({ children }: any) => (
-    <p className="text-muted-foreground leading-relaxed text-lg">
-      {children}
-    </p>
+  p: ({ children }: MdxComponentProps<'p'>) => (
+    <p className="text-muted-foreground leading-relaxed text-lg">{children}</p>
   ),
-  // `img` bileşeni, doğrudan `div` döndürerek hydration sorununu çözer
-  img: ({ src, alt }: any) => (
-    <div className="relative w-full h-[200px] md:h-[250px] lg:h-[300px] rounded-xl overflow-hidden shadow-lg">
-      <Image
-        src={src}
-        alt={alt || ''}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
-    </div>
-  ),
-  h1: ({ children }: any) => (<h1 className="text-4xl font-bold text-foreground mb-6 mt-8 first:mt-0">{children}</h1>),
-  h2: ({ children }: any) => (<h2 className="text-3xl font-semibold text-foreground mt-8 mb-4 border-b border-border pb-2">{children}</h2>),
-  h3: ({ children }: any) => (<h3 className="text-2xl font-semibold text-foreground mt-6 mb-3">{children}</h3>),
-  h4: ({ children }: any) => (<h4 className="text-xl font-semibold text-foreground mt-4 mb-2">{children}</h4>),
-  ul: ({ children }: any) => (<ul className="list-disc list-inside text-muted-foreground mb-4 space-y-2 ml-4">{children}</ul>),
-  ol: ({ children }: any) => (<ol className="list-decimal list-inside text-muted-foreground mb-4 space-y-2 ml-4">{children}</ol>),
-  li: ({ children }: any) => (<li className="text-muted-foreground text-lg">{children}</li>),
-  strong: ({ children }: any) => (<strong className="text-foreground font-semibold">{children}</strong>),
-  blockquote: ({ children }: any) => (<blockquote className="border-l-4 border-primary pl-6 bg-secondary/50 p-4 rounded-r-lg my-6 text-foreground">{children}</blockquote>),
-  code: ({ children, className }: any) => {
-    if (!className) {
-      return (<code className="bg-secondary px-2 py-1 rounded text-sm text-primary font-mono">{children}</code>);
-    }
-    return (<div className="my-6"><pre className="bg-secondary p-2 rounded-lg overflow-x-auto border border-border"><code className="text-md text-foreground font-mono">{children}</code></pre></div>);
+  img: ({ src, alt }: MdxComponentProps<'img'>) => {
+    // src string değilse render etme
+    if (!src || typeof src !== 'string') return null;
+
+    return (
+      <div className="relative w-full h-[200px] md:h-[250px] lg:h-[300px] rounded-xl overflow-hidden shadow-lg">
+        <Image
+          src={src}
+          alt={alt || ''}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+    );
   },
-  table: ({ children }: any) => (<div className="overflow-x-auto my-6"><table className="w-full border-collapse border border-border rounded-lg">{children}</table></div>),
-  th: ({ children }: any) => (<th className="border border-border p-3 bg-secondary text-left font-semibold text-foreground">{children}</th>),
-  td: ({ children }: any) => (<td className="border border-border p-3 text-muted-foreground">{children}</td>),
-  a: ({ children, href }: any) => (<a href={href} className="text-primary hover:text-primary/80 underline transition-colors font-medium" target={href?.startsWith('http') ? '_blank' : undefined} rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}>{children}</a>),
+  h1: ({ children }: MdxComponentProps<'h1'>) => (<h1 className="text-4xl font-bold text-foreground mb-6 mt-8 first:mt-0">{children}</h1>),
+  h2: ({ children }: MdxComponentProps<'h2'>) => (<h2 className="text-3xl font-semibold text-foreground mt-8 mb-4 border-b border-border pb-2">{children}</h2>),
+  h3: ({ children }: MdxComponentProps<'h3'>) => (<h3 className="text-2xl font-semibold text-foreground mt-6 mb-3">{children}</h3>),
+  h4: ({ children }: MdxComponentProps<'h4'>) => (<h4 className="text-xl font-semibold text-foreground mt-4 mb-2">{children}</h4>),
+  ul: ({ children }: MdxComponentProps<'ul'>) => (<ul className="list-disc list-inside text-muted-foreground mb-4 space-y-2 ml-4">{children}</ul>),
+  ol: ({ children }: MdxComponentProps<'ol'>) => (<ol className="list-decimal list-inside text-muted-foreground mb-4 space-y-2 ml-4">{children}</ol>),
+  li: ({ children }: MdxComponentProps<'li'>) => (<li className="text-muted-foreground text-lg">{children}</li>),
+  strong: ({ children }: MdxComponentProps<'strong'>) => (<strong className="text-foreground font-semibold">{children}</strong>),
+  blockquote: ({ children }: MdxComponentProps<'blockquote'>) => (<blockquote className="border-l-4 border-primary pl-6 bg-secondary/50 p-4 rounded-r-lg my-6 text-foreground">{children}</blockquote>),
+  code: ({ children, className }: MdxComponentProps<'code'>) => {
+    if (!className) {
+      return <code className="bg-secondary px-2 py-1 rounded text-sm text-primary font-mono">{children}</code>;
+    }
+
+    return (
+      <div className="my-6">
+        <pre className="bg-secondary p-2 rounded-lg overflow-x-auto border border-border">
+          <code className="text-md text-foreground font-mono">{children}</code>
+        </pre>
+      </div>
+    );
+  },
+  table: ({ children }: MdxComponentProps<'table'>) => (<div className="overflow-x-auto my-6"><table className="w-full border-collapse border border-border rounded-lg">{children}</table></div>),
+  th: ({ children }: MdxComponentProps<'th'>) => (<th className="border border-border p-3 bg-secondary text-left font-semibold text-foreground">{children}</th>),
+  td: ({ children }: MdxComponentProps<'td'>) => (<td className="border border-border p-3 text-muted-foreground">{children}</td>),
+  a: ({ children, href }: MdxComponentProps<'a'>) => (
+    <a href={href} className="text-primary hover:text-primary/80 underline transition-colors font-medium"
+      target={href?.startsWith('http') ? '_blank' : undefined}
+      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}>
+      {children}
+    </a>
+  ),
   hr: () => (<hr className="border-border my-8" />),
 };
 
 export interface BlogPostClientProps {
   initialPost: {
-    frontmatter: any;
+    frontmatter: Frontmatter;
     content: string;
   };
   initialDisplayName: string;
@@ -68,7 +100,7 @@ export interface BlogPostClientProps {
   category: string;
 }
 
-export default function BlogPostClient({ initialPost, initialDisplayName, lang, category, slug }: BlogPostClientProps) {
+export default function BlogPostClient({ initialPost, initialDisplayName, lang }: BlogPostClientProps) {
   const { t, i18n } = useTranslation();
   const { frontmatter, content } = initialPost;
 

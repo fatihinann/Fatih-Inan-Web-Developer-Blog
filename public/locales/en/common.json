@@ -14,7 +14,7 @@
     "contact": "Contact"
   },
   "footer": {
-    "description": "Hello, I'm Fatih İnan. I'm a software developer/web developer with a passion for motorcycles. I've been writing about technology, motorcycles, and life experiences since 2002. On this blog, I continue to guide those new to the motorcycle world, spread the culture of safe riding, and share my passion for two wheels.",
+    "description": "Hello, I'm Fatih İnan. I'm a 24-year-old web developer. I use this site to share my work and thoughts, not just as a portfolio, but also as a blog.",
     "pages": "Pages",
     "contact": "Contact",
     "jobTitle": "Web Developer",
@@ -26,7 +26,7 @@
     "title": "About Me",
     "hello": "Hello! I'm Fatih İnan",
     "description": {
-      "part1": "23 years old. I've been interested in computers since childhood; I've been involved in IT and web design since high school. I learned ASP.NET in the 11th grade and PHP in the 12th grade, then studied Computer Programming at Eskişehir Osmangazi University. I worked as a POS specialist for about 2 years, which gave me valuable experience.",
+      "part1": "24 years old. I've been interested in computers since childhood; I've been involved in IT and web design since high school. I learned ASP.NET in the 11th grade and PHP in the 12th grade, then studied Computer Programming at Eskişehir Osmangazi University. I worked as a POS specialist for about 2 years, which gave me valuable experience.",
       "part2": "Technology is a big part of my life, but it's not everything. I have passions like motorcycles, guitars, cameras, and camping gear. I go to rock/metal concerts; however, returning to work is now my priority as I need financial resources to pursue my other passions.",
       "part3": "Instead of jumping from one thing to another, I created this blog site to make a solid start. I'm continuing to develop myself by applying what I've learned and aiming to gain experience and earn income through e-commerce projects in the long term."
     },
@@ -124,6 +124,26 @@
     }
   },
 
+  "portfolio": {
+    "title": "Selected Works",
+    "subtitle": "A collection of projects where I blend performance with aesthetics.",
+    "viewProject": "View Project",
+    "exploreMore": "Explore All Code",
+    "comingSoon": "More projects coming soon...",
+    "projects": {
+      "gunnurTeksen": {
+        "title": "Günnur Teksen - Clinical Psychologist",
+        "description": "A professional therapist portfolio site with a calm, nature-inspired design. Built with Next.js, Tailwind CSS, and Framer Motion.",
+        "badge": "Nature-inspired professional design",
+        "features": {
+          "therapy1": "Individual Therapy",
+          "therapy2": "Schema Therapy",
+          "education": "Education Info",
+          "certificates": "Certificates"
+        }
+      }
+    }
+  },
   "error": {
     "title": "An Error Occurred",
     "description": "Sorry, an unexpected error occurred. Please try refreshing the page.",

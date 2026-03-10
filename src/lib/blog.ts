@@ -1,7 +1,7 @@
 'use server'
 
 import { getMonthNumber } from './blogUtils'
-import { readFileSync, existsSync, readdirSync } from 'fs'
+import { existsSync, readdirSync } from 'fs'
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter'
@@ -108,8 +108,6 @@ export async function getAllBlogPosts(): Promise<BlogPostFrontmatter[]> {
         const fileContents = fs.readFileSync(filePath, 'utf8');
         const { data: frontmatter } = matter(fileContents);
 
-        // Slug'ı dosya adından al
-        const filename = path.basename(filePath, '.md');
         // Get the full path relative to the locale folder
         const relativePath = path.relative(localePath, filePath);
         // Get the slug from the relative path, removing the .md extension

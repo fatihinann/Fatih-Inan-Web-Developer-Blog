@@ -2,6 +2,9 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Hero } from '@/../components/hero';
+import { PortfolioSection } from '@/../components/portfolio';
+import { About } from '@/../components/about';
+import { Contact } from '@/../components/contact';
 import Script from 'next/script';
 import Providers from '../providers';
 
@@ -37,23 +40,26 @@ export default function HomePage() {
 
   return (
     
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100">
+    <div className="min-h-screen bg-background">
       <Script
         id="structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main>
+      <main className="relative">
         <AnimatePresence mode="wait">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <Providers>
               <Hero />
+              <About />
+              <PortfolioSection />
+              <Contact />
             </Providers>
           </motion.div>
         </AnimatePresence>

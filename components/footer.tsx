@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Github, Instagram, Mail, ExternalLink } from 'lucide-react';
+import { Github, Instagram, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'next/navigation';
 
@@ -26,7 +26,7 @@ export const Footer = () => {
     { icon: Mail, href: 'mailto:fatihinan3437@gmail.com', label: 'Email' }
   ];
 
-  const isActiveLink = (href:string):boolean => {
+  const isActiveLink = (href: string): boolean => {
     return pathname === href;
   };
 
@@ -69,11 +69,10 @@ export const Footer = () => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`transition-colors ${
-                        isActiveLink(item.href)
+                      className={`transition-colors ${isActiveLink(item.href)
                           ? 'text-primary font-medium'
                           : 'text-foreground hover:text-primary'
-                      }`}
+                        }`}
                     >
                       {item.name}
                     </Link>

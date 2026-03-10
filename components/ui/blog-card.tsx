@@ -17,26 +17,26 @@ export function BlogCard({ post }: BlogCardProps) {
 
   // Post'un kendi locale'ini kontrol et, eğer yoksa current lang'i kullan
   const postLocale = post.locale || currentLang;
-  
+
   // Eğer post farklı bir dildeyse ve mevcut dil değilse, link oluştururken dikkat et
   const shouldTranslate = postLocale !== currentLang;
-  
+
   let translatedCategory = post.category;
   let translatedSlug = post.slug;
-  
+
   if (shouldTranslate) {
-    translatedCategory = categoryMap[post.category] || post.category;
-    translatedSlug = slugMap[post.slug] || post.slug;
+    translatedCategory = categoryMap[translatedCategory] || translatedCategory;
+    translatedSlug = slugMap[translatedSlug] || translatedSlug;
   }
 
-  const href = `/${currentLang}/blog/${post.slug}`;
+  const href = `/${currentLang}/blog/${translatedSlug}`;
 
   return (
     <Link href={href}>
       <Card className="cursor-pointer border-border hover:shadow-xl transition-all duration-300 overflow-hidden h-full hover:border-primary">
         <CardHeader>
           <Badge variant="secondary" className="w-fit bg-primary/10 text-primary border-primary/20">
-            {getCategoryDisplayName(post.category)}
+            {getCategoryDisplayName(translatedCategory)}
           </Badge>
           <CardTitle className="text-xl font-serif text-foreground group-hover:text-primary transition-colors">
             {post.title}

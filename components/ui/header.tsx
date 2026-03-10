@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Instagram, Film, Menu, X, Mail } from 'lucide-react';
+import { Github, Instagram, Menu, X, Mail } from 'lucide-react';
 import { Button } from './button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -40,9 +40,8 @@ export function Header() {
   return (
     <>
       <motion.header
-        className={`header-theme fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
-          isScrolled ? 'shadow-lg backdrop-blur-sm' : ''
-        }`}
+        className={`header-theme fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${isScrolled ? 'shadow-lg backdrop-blur-sm' : ''
+          }`}
         style={{
           backgroundColor: isScrolled ? 'var(--background)' : 'transparent',
           opacity: isScrolled ? 0.95 : 1,
@@ -69,11 +68,10 @@ export function Header() {
               {navigation.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <motion.div
-                    className={`text-sm font-medium transition-colors cursor-pointer ${
-                      pathname === item.href
+                    className={`text-sm font-medium transition-colors cursor-pointer ${pathname === item.href
                         ? 'text-foreground border-b-2 border-primary'
                         : 'text-primary hover:text-foreground'
-                    }`}
+                      }`}
                     whileHover={{ y: -2 }}
                   >
                     {item.name}
@@ -164,11 +162,10 @@ export function Header() {
                     {navigation.map((item, index) => (
                       <Link key={item.href} href={item.href} onClick={closeMobileMenu}>
                         <motion.div
-                          className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${
-                            pathname === item.href
+                          className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${pathname === item.href
                               ? 'bg-primary/10 text-foreground border-l-4 border-primary'
                               : 'text-primary hover:text-foreground hover:bg-secondary'
-                          }`}
+                            }`}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}

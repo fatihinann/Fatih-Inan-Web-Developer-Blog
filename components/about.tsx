@@ -22,9 +22,8 @@ export function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-theme">
-
-      <div className="container mx-auto px-4 pb-8">
+    <section id="about" className="py-24 px-4 bg-background">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -112,6 +111,6 @@ export function About() {
 
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

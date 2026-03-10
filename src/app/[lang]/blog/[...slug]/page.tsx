@@ -12,10 +12,27 @@ interface BlogPostPageProps {
   }>;
 }
 
+interface Frontmatter {
+  title: string;
+  excerpt: string;
+  date: {
+    year: number;
+    month: string;
+    day: number;
+  };
+  author: string;
+  category?: string;
+  image?: string;
+  readTime: number;
+  locale: string;
+  slug: string;
+  tags: string[];
+}
+
 // Metadata generate function
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
-  
+
   if (!slug || slug.length < 2) {
     return {
       title: 'Blog Post Not Found',
@@ -56,7 +73,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 // Sunucuda çalışır
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { lang, slug } = await params;
-  
+
   if (!slug || slug.length < 2) {
     notFound();
   }
@@ -75,7 +92,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <BlogPostClient
-      initialPost={{ frontmatter, content }}
+      initialPost={{ frontmatter: frontmatter as Frontmatter, content }}
       initialDisplayName={displayName}
       lang={lang}
       slug={postSlug}
