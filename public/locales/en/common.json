@@ -113,7 +113,9 @@
       "message": "Message",
       "messagePlaceholder": "Write your message here...",
       "send": "Send Message",
-      "sending": "Sending..."
+      "sending": "Sending...",
+      "successMessage": "Your message has been sent successfully!",
+      "errorMessage": "An error occurred. Please try again."
     },
     "contactInfo": {
       "title": "Contact Information",

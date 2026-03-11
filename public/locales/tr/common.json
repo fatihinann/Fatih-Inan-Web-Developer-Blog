@@ -126,7 +126,9 @@
       "message": "Mesaj",
       "messagePlaceholder": "Mesajınızı buraya yazın...",
       "send": "Mesaj Gönder",
-      "sending": "Gönderiliyor..."
+      "sending": "Gönderiliyor...",
+      "successMessage": "Mesajınız başarıyla gönderildi!",
+      "errorMessage": "Bir hata oluştu. Lütfen tekrar deneyin."
     },
     "contactInfo": {
       "title": "İletişim Bilgileri",
